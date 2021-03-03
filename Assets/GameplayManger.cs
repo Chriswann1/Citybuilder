@@ -26,27 +26,36 @@ public class GameplayManger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        GiveFood();
     }
 
     void GiveFood()
     {
         if (food >= resident)
         {
-            Eat = true;
+            //Eat = true;
         }
-        else
+        /*else
         {
-            List NbResident = GameObject.FindObjectsOfType(Resident.gameObject);
+            Resident[] NbResident = FindObjectsOfType<Resident>();
             int diff = resident - food;
-            for (int i = 1; i < NbResident.Lenght || diff = 0; i++)
+            for (int i = 1; i <= NbResident.Length || diff != 0; i++)
             {
-                if (Random.Range(1, 3) >= 3)
+                Random.Range(1, 3)
                 {
                     Destroy(gameObject);
                     diff--; 
                 }
             }
-        }
+        }*/
+        /* else
+         {
+             KillRandom()
+         }
+     }
+     void KillRandom()
+     { 
+         Random.Range
+     }*/
     }
 }

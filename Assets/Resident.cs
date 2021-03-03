@@ -8,6 +8,7 @@ public class Resident : MonoBehaviour
     private bool Sleep = false;
     private int age = 20;
     private bool Happiness; 
+    //private int;
     // Start is called before the first frame update
     void Start()
     {
