@@ -10,6 +10,8 @@ public class GameplayManger : MonoBehaviour
     public int stone;
     public int resident;
     public int freeHouse;
+    private int target;
+    private GameObject deadMan;
     // Start is called before the first frame update
     void Awake()
     {
@@ -48,14 +50,15 @@ public class GameplayManger : MonoBehaviour
                 }
             }
         }*/
-        /* else
+         else
          {
-             KillRandom()
+            KillRandom();
          }
-     }
-     void KillRandom()
-     { 
-         Random.Range
-     }*/
+    }
+    void KillRandom()
+    {
+        Resident[] NbResident = FindObjectsOfType<Resident>();
+        target = Random.Range(0, NbResident.Length);
+        deadMan = NbResident [target];
     }
 }
