@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 849547533}
   - component: {fileID: 849547532}
   - component: {fileID: 849547531}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915889430}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 92, z: 0}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -500,6 +500,7 @@ MonoBehaviour:
   building2: {fileID: 3267914649270580489, guid: 27b17885b593a8042b9d22a21f341347,
     type: 3}
   objectInHand: {fileID: 0}
+  inHand: 0
 --- !u!4 &1466515182
 Transform:
   m_ObjectHideFlags: 0
@@ -532,7 +533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1467036064
 BoxCollider:
   m_ObjectHideFlags: 0

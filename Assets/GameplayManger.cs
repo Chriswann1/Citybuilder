@@ -59,6 +59,6 @@ public class GameplayManger : MonoBehaviour
     {
         Resident[] NbResident = FindObjectsOfType<Resident>();
         target = Random.Range(0, NbResident.Length);
-        deadMan = NbResident [target];
+        //deadMan = NbResident [target];
     }
 }
