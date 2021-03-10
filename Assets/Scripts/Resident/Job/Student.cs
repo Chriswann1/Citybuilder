@@ -31,7 +31,7 @@ public class Student : Resident
             if (taskpercent >= 100)
             {
                 Debug.Log("Trained !");
-                GameplayManger.Instance.JobConvert(this, Eat, Sleep, Happiness, age, classtarget);
+                GameplayManger.Instance.JobConvert(this, energy, Happiness, age, classtarget);
                 actualbehaviour = behaviour.idle;
             }
         }

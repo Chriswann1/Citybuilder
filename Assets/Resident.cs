@@ -4,10 +4,10 @@ using UnityEngine.AI;
 
 public class Resident : MonoBehaviour
 {
+
     [SerializeField] private protected float minrange = 2;
     private protected Transform buildingentrance;
-    public bool Eat = false;
-    public bool Sleep = false;
+    public int energy = 100;
     public int age = 20;
     public bool Happiness;
     private protected GameObject target;
@@ -35,9 +35,16 @@ public class Resident : MonoBehaviour
 
     [SerializeField] protected behaviour actualbehaviour = behaviour.idle;
     //private int;
+
+
+
+
+
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
+
         thiscollider = this.GetComponent<Collider>();
         if (this.TryGetComponent<NavMeshAgent>(out agent))
         {
@@ -54,54 +61,78 @@ public class Resident : MonoBehaviour
     protected virtual void Update()
     {/*
         if (GameplayManger.Instance.food >= GameplayManger.Instance.resident)
-        {
-            Eat = true;
-        }
-        else
-        {
-            int diff = GameplayManger.Instance.resident - GameplayManger.Instance.food;
-            for (int i = 1; i <= diff; i++)
-            {
-                if(Random.Range(1,3) >= 3)
-                {
-                    Destroy(gameObject);
-                }
-            }
-        }
 
-        if (age <= 50)
+        GameplayManger.Instance.resident = GameplayManger.Instance.resident + 1;
+        energy = 100;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (GameplayManger.Instance.time == 19)
+        {
+            energy = 10;
+        }
+    }
+    void Age()
+    {
+        if (age < 50)
+        {
+            age++;
+        }
+        if (50 <= age && age < 55)
         {
             if (Random.Range(1,10)>= 10)
             {
                 Destroy(gameObject);
-            }            
+            }
+            else
+            {
+                age++;
+            }           
         }
-        if (age <= 55)
+
+        else if (55 <= age && age < 60)
         {
             if (Random.Range(1, 10) >= 7)
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                age++;
+            }
         }
-        if (age <= 60)
+
+        else if (60 <= age && age < 65)
         {
             if (Random.Range(1, 10) >= 4)
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                age++;
+            }
         }
-        if (age <= 65)
+
+        else if (65 <= age && age < 70)
         {
             if (Random.Range(1, 10) >= 2)
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                age++;
+            }
         }
-        if (age <= 70)
+
+        else if (age <= 70)
         {
             Destroy(gameObject);
         }*/
-        if (actualbehaviour != behaviour.sleep && actualbehaviour != behaviour.gosleep && Sleep && actualbehaviour != behaviour.waiting) actualbehaviour = behaviour.gosleep;
+        if (actualbehaviour != behaviour.sleep && actualbehaviour != behaviour.gosleep && energy <= 0 && actualbehaviour != behaviour.waiting) actualbehaviour = behaviour.gosleep;
 
         switch (actualbehaviour)
         {
@@ -136,7 +167,7 @@ public class Resident : MonoBehaviour
                 sleeptime += sleepspeed * Time.deltaTime;
                 if (sleeptime >= 100)
                 {
-                    Sleep = false;
+                    energy = 100;
                     sleeptime = 0;
                     actualbehaviour = behaviour.gowork;
                     target = null;
@@ -189,7 +220,7 @@ public class Resident : MonoBehaviour
                 }
                 break;
             case behaviour.waiting:
-                if (Sleep && GameplayManger.Instance.freeHouse > 0)
+                if (energy <= 0 && GameplayManger.Instance.freeHouse > 0)
                 {
                     actualbehaviour = behaviour.gosleep;
                 }
@@ -202,7 +233,7 @@ public class Resident : MonoBehaviour
 
     protected void Convert(Resident targetedjob)
     {
-        GameplayManger.Instance.JobConvert(this, Eat, Sleep, Happiness, age, targetedjob);
+        GameplayManger.Instance.JobConvert(this, energy, Happiness, age, targetedjob);
     }
     
     protected GameObject FindClosestWorkPlace(string workplacetag)

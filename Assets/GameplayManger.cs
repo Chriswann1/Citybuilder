@@ -6,7 +6,7 @@ public class GameplayManger : MonoBehaviour
     public int food;
     public int wood;
     public int stone;
-    public int resident;
+    public int resident = 0;
     public int freeHouse;
 
     private int housenumber;
@@ -18,6 +18,11 @@ public class GameplayManger : MonoBehaviour
 
     private int target;
     private GameObject deadMan;
+
+
+
+    public int time;
+    public int prosperity;
 
     // Start is called before the first frame update
     void Awake()
@@ -31,20 +36,24 @@ public class GameplayManger : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         housenumber = GameObject.FindGameObjectsWithTag("house").Length;
         freeHouse = housenumber;
-        JobConvert(testminer, testminer.Eat, testminer.Sleep, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>());
-        JobConvert(testtimber, testtimber.Eat, testtimber.Sleep, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>());
+        JobConvert(testminer, testminer.energy, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>());
+        JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        GiveFood();
+        
+        if (time == 19) GiveFood();
     }
 
     void GiveFood()
     {
+
         if (food >= resident)
         {
             //Eat = true;
@@ -62,19 +71,28 @@ public class GameplayManger : MonoBehaviour
                 }
             }
         }*/
-        else      
+        else
+        {
+            KillRandom();
+        }
+
+        if (food <= resident)
         { 
             KillRandom();
+            GiveFood();
+
         }
     }
     void KillRandom()
     {
         Resident[] NbResident = FindObjectsOfType<Resident>();
         target = Random.Range(0, NbResident.Length);
-        //deadMan = NbResident [target];
+        deadMan = NbResident [target].gameObject;
+        resident = resident - 1;
     }
 
-    public void JobConvert(Resident who, bool isstarving, bool isenergied, bool ishappy, int age, Resident targetedjob)
+
+    public void JobConvert(Resident who, int energy, bool ishappy, int age, Resident targetedjob)
     {
         GameObject whoobject = who.gameObject;
         if (!(who is Student))
@@ -84,8 +102,7 @@ public class GameplayManger : MonoBehaviour
             whostudent.classtarget = targetedjob;
             whostudent.classtarget.enabled = false;
             whostudent.age = age;
-            whostudent.Eat = isstarving;
-            whostudent.Sleep = isenergied;
+            whostudent.energy = energy;
             whostudent.Happiness = ishappy;
 
 
@@ -96,8 +113,7 @@ public class GameplayManger : MonoBehaviour
             if (whostudent.classtarget != null)
             {
                 whostudent.classtarget.age = age;
-                whostudent.classtarget.Eat = isstarving;
-                whostudent.classtarget.Sleep = isenergied;
+                whostudent.classtarget.energy = energy;
                 whostudent.classtarget.Happiness = ishappy;
                 whostudent.classtarget.enabled = true;
                 Destroy(who);
@@ -108,5 +124,5 @@ public class GameplayManger : MonoBehaviour
 
         }
     }
-
+    
 }

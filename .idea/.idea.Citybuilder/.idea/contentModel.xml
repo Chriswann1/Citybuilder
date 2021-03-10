@@ -12,10 +12,13 @@
         <e p="Audio" t="Include">
           <e p="README.txt" t="Include" />
         </e>
+        <e p="Buildmanage.cs" t="Include" />
         <e p="GameplayManger.cs" t="Include" />
+        <e p="Library.cs" t="Include" />
         <e p="Materials" t="Include">
           <e p="README.txt" t="Include" />
         </e>
+        <e p="Museum.cs" t="Include" />
         <e p="PhysicsMaterial" t="Include">
           <e p="README.txt" t="Include" />
         </e>
