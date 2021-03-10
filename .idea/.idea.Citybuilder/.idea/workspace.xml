@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e6e9212-89c0-421f-be48-b1b2c7c09cbc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/GameplayManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameplayManger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resident.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resident.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Test building/Cube1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Test building/Cube1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Test building/Cube2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Test building/Cube2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Alexandre.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Alexandre.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,10 +29,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Buildings.cs" />
-        <option value="$PROJECT_DIR$/Assets/GameplayManger.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Building.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" />
         <option value="$PROJECT_DIR$/Assets/Resident.cs" />
+        <option value="$PROJECT_DIR$/Assets/GameplayManger.cs" />
       </list>
     </option>
   </component>
@@ -86,6 +84,7 @@
       <workItem from="1614872921312" duration="12029000" />
       <workItem from="1614951417495" duration="4905000" />
       <workItem from="1615126717073" duration="3362000" />
+      <workItem from="1615365480885" duration="160000" />
     </task>
     <servers />
   </component>
