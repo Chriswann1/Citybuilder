@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameplayManger : MonoBehaviour
 {
@@ -10,9 +8,16 @@ public class GameplayManger : MonoBehaviour
     public int stone;
     public int resident;
     public int freeHouse;
+    private int housenumber;
+    public Transform sleepinstance;
+    public Buildings tobuildlist;
+
+    public Resident testminer, testtimber;
+    
     // Start is called before the first frame update
     void Awake()
     {
+        
         if (Instance == null)
         {
             Instance = this;
@@ -21,6 +26,10 @@ public class GameplayManger : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        housenumber = GameObject.FindGameObjectsWithTag("house").Length;
+        freeHouse = housenumber;
+        JobConvert(testminer, testminer.Eat, testminer.Sleep, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>());
+        JobConvert(testtimber, testtimber.Eat, testtimber.Sleep, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>());
     }
 
     // Update is called once per frame
@@ -58,4 +67,40 @@ public class GameplayManger : MonoBehaviour
          Random.Range
      }*/
     }
+
+    public void JobConvert(Resident who, bool isstarving, bool isenergied, bool ishappy, int age, Resident targetedjob)
+    {
+        GameObject whoobject = who.gameObject;
+        if (!(who is Student))
+        {
+            Destroy(who);
+            Student whostudent = whoobject.AddComponent<Student>();
+            whostudent.classtarget = targetedjob;
+            whostudent.classtarget.enabled = false;
+            whostudent.age = age;
+            whostudent.Eat = isstarving;
+            whostudent.Sleep = isenergied;
+            whostudent.Happiness = ishappy;
+
+
+        }
+        else
+        {
+            Student whostudent = who.gameObject.GetComponent<Student>();
+            if (whostudent.classtarget != null)
+            {
+                whostudent.classtarget.age = age;
+                whostudent.classtarget.Eat = isstarving;
+                whostudent.classtarget.Sleep = isenergied;
+                whostudent.classtarget.Happiness = ishappy;
+                whostudent.classtarget.enabled = true;
+                Destroy(who);
+            }
+
+
+            
+
+        }
+    }
+
 }

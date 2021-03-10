@@ -12,6 +12,7 @@
         <e p="Audio" t="Include">
           <e p="README.txt" t="Include" />
         </e>
+        <e p="GameplayManger.cs" t="Include" />
         <e p="Materials" t="Include">
           <e p="README.txt" t="Include" />
         </e>
@@ -21,14 +22,22 @@
         <e p="Prefabs" t="Include">
           <e p="README.txt" t="Include" />
         </e>
+        <e p="Resident.cs" t="Include" />
         <e p="Scenes" t="Include">
           <e p="README.txt" t="Include" />
         </e>
         <e p="Scripts" t="Include">
+          <e p="Building.cs" t="Include" />
+          <e p="Buildings.cs" t="Include" />
           <e p="README.txt" t="Include" />
           <e p="Resident" t="Include">
             <e p="Job" t="Include">
+              <e p="Builder.cs" t="Include" />
+              <e p="Food Searcher.cs" t="Include" />
+              <e p="Miner.cs" t="Include" />
               <e p="Student.cs" t="Include" />
+              <e p="Timber.cs" t="Include" />
+              <e p="Vagabond.cs" t="Include" />
             </e>
           </e>
         </e>

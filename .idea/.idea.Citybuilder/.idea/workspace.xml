@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7e6e9212-89c0-421f-be48-b1b2c7c09cbc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameplayManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameplayManger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resident.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resident.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Terrain/Bastien Terrain.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Terrain/Bastien Terrain.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,10 +19,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Building.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Builder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Vagabond.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Buildings.cs" />
+        <option value="$PROJECT_DIR$/Assets/GameplayManger.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Building.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Resident.cs" />
       </list>
     </option>
   </component>
@@ -65,6 +79,13 @@
       <updated>1614766176287</updated>
       <workItem from="1614766182736" duration="1356000" />
       <workItem from="1614781249709" duration="2599000" />
+      <workItem from="1614787201372" duration="1156000" />
+      <workItem from="1614790075102" duration="9363000" />
+      <workItem from="1614852844794" duration="7314000" />
+      <workItem from="1614863980079" duration="1543000" />
+      <workItem from="1614872921312" duration="12029000" />
+      <workItem from="1614951417495" duration="4905000" />
+      <workItem from="1615126717073" duration="3362000" />
     </task>
     <servers />
   </component>
@@ -75,5 +96,12 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="254" y="-16" width="1344" height="717" maximized="true" key="dock-window-1" timestamp="1614873685136">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="75" y="-8" width="1380" height="1027" maximized="true" key="dock-window-1/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614858864986" />
+    <state x="254" y="-16" width="1344" height="717" maximized="true" key="dock-window-1/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1614873685136" />
   </component>
 </project>

@@ -7,6 +7,7 @@ public class Buildings : MonoBehaviour
     public GameObject building1, building2;
     public GameObject objectInHand = null;
 
+
     void Update()
     {
         //Put a building in hand. If it's already in hand, take it off

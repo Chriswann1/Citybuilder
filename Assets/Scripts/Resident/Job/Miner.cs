@@ -1,0 +1,33 @@
+﻿using UnityEngine;
+
+public class Miner : Resident
+{
+
+    // Start is called before the first frame update
+    protected override void Start()
+    {
+        buildingtag = "stones";
+        base.Start(); 
+    }
+
+    // Update is called once per frame
+    protected override void Update()
+    {
+        base.Update();
+
+        if (actualbehaviour == behaviour.work)
+        {
+            taskpercent += taskspeed * Time.deltaTime;
+            if (taskpercent >= 100)
+            {
+                GameplayManger.Instance.stone++;
+                taskpercent = 0;
+                if (Vector3.Distance(transform.position, buildingentrance.position) >= minrange)
+                {
+                    actualbehaviour = behaviour.gowork;
+                    target = null;
+                }
+            }
+        }
+    }
+}

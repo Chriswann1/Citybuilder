@@ -8,6 +8,7 @@ TagManager:
   - stones
   - bush
   - school
+  - house
   layers:
   - Default
   - TransparentFX
