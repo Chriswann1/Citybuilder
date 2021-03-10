@@ -8,10 +8,12 @@ public class GameplayManger : MonoBehaviour
     public int food;
     public int wood;
     public int stone;
-    public int resident;
+    public int resident = 0;
     public int freeHouse;
     private int target;
     private GameObject deadMan;
+    public float time;
+    public int prosperity;
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,42 +25,31 @@ public class GameplayManger : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        if (time == 19)
         GiveFood();
     }
 
     void GiveFood()
     {
-        if (food >= resident)
-        {
-            //Eat = true;
-        }
-        /*else
-        {
-            Resident[] NbResident = FindObjectsOfType<Resident>();
-            int diff = resident - food;
-            for (int i = 1; i <= NbResident.Length || diff != 0; i++)
-            {
-                Random.Range(1, 3)
-                {
-                    Destroy(gameObject);
-                    diff--; 
-                }
-            }
-        }*/
-         else
-         {
+        if (food <= resident)
+        { 
             KillRandom();
-         }
+            GiveFood();
+        }
     }
     void KillRandom()
     {
         Resident[] NbResident = FindObjectsOfType<Resident>();
         target = Random.Range(0, NbResident.Length);
-        //deadMan = NbResident [target];
+        deadMan = NbResident [target].gameObject;
+        resident = resident - 1;
     }
+   
 }

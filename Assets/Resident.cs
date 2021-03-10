@@ -4,65 +4,84 @@ using UnityEngine;
 
 public class Resident : MonoBehaviour
 {
-    private bool Eat = false;
-    private bool Sleep = false;
+    [SerializeField]
+    private int energy;
+    [SerializeField]
     private int age = 20;
-    private bool Happiness; 
-    //private int;
+    [SerializeField]
+    private bool Happiness;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameplayManger.Instance.resident = GameplayManger.Instance.resident + 1;
+        energy = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameplayManger.Instance.food >= GameplayManger.Instance.resident)
+        if (GameplayManger.Instance.time == 19)
         {
-            Eat = true;
+            energy = 10;
         }
-        else
+    }
+    void Age()
+    {
+        if (age < 50)
         {
-            int diff = GameplayManger.Instance.resident - GameplayManger.Instance.food;
-            for (int i = 1; i <= diff; i++)
-            {
-                if(Random.Range(1,3) >= 3)
-                {
-                    Destroy(gameObject);
-                }
-            }
+            age++;
         }
-
-        if (age <= 50)
+        if (50 <= age && age < 55)
         {
             if (Random.Range(1,10)>= 10)
             {
                 Destroy(gameObject);
-            }            
+            }
+            else
+            {
+                age++;
+            }           
         }
-        if (age <= 55)
+
+        else if (55 <= age && age < 60)
         {
             if (Random.Range(1, 10) >= 7)
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                age++;
+            }
         }
-        if (age <= 60)
+
+        else if (60 <= age && age < 65)
         {
             if (Random.Range(1, 10) >= 4)
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                age++;
+            }
         }
-        if (age <= 65)
+
+        else if (65 <= age && age < 70)
         {
             if (Random.Range(1, 10) >= 2)
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                age++;
+            }
         }
-        if (age <= 70)
+
+        else if (age <= 70)
         {
             Destroy(gameObject);
         }
