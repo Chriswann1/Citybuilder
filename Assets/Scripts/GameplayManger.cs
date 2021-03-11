@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -13,8 +14,7 @@ public class GameplayManger : MonoBehaviour
     public int stone;
     public int resident = 0;
     public int freeHouse;
-
-    private int housenumber;
+    
     public Transform sleepinstance;
     public List<Building> tobuildlist;
 
@@ -28,7 +28,21 @@ public class GameplayManger : MonoBehaviour
     
     private int target;
     private GameObject deadMan;
-
+    
+    
+    public List<GameObject> residents_active = new List<GameObject>();
+    public List<GameObject> houses_active = new List<GameObject>();
+    public List<GameObject> schools_active = new List<GameObject>();
+    public List<GameObject> farms_active = new List<GameObject>();
+    ///////////////////////////////////////////////////////////////////
+    public List<GameObject> residents_unactive = new List<GameObject>();
+    public List<GameObject> houses_unactive = new List<GameObject>();
+    public List<GameObject> schools_unactive = new List<GameObject>();
+    public List<GameObject> farms_unactive = new List<GameObject>();
+    //////////////////////////////////////////////////////////////////
+    public List<GameObject> mines = new List<GameObject>();
+    public List<GameObject> forest = new List<GameObject>();
+    public List<GameObject> bush = new List<GameObject>();
 
 
     public int time;
@@ -51,18 +65,40 @@ public class GameplayManger : MonoBehaviour
 
         if (upgradeui != null && upgradeui.GetComponent<LineRenderer>() != null) ui_linerenderer = upgradeui.GetComponent<LineRenderer>();
 
-        housenumber = GameObject.FindGameObjectsWithTag("house").Length;
-        freeHouse = housenumber;
+        initTracker();
+        freeHouse = houses_active.Count;
         JobConvert(testminer, testminer.energy, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>(), false);
         JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>(), false);
-        ui_linerenderer.SetPosition(0, Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down*2f);
-
+        if (!(Camera.main is null))
+            ui_linerenderer.SetPosition(0,
+                Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        for (int i = 0; i < schools_active.Count; i++)
+        {
+            if (!schools_active[i].activeSelf)
+            {
+                schools_unactive.Add(schools_active[i]);
+                schools_active.Remove(schools_active[i]);
+            }
+        }
+
+        for (int i = 0; i < schools_unactive.Count; i++)
+        {
+            if (schools_unactive[i].activeSelf)
+            {
+                schools_active.Add(schools_unactive[i]);
+                schools_unactive.Remove(schools_unactive[i]);
+            }
+        }
+        if (selectedresident != null && selectedresident.actualbehaviour == Resident.behaviour.sleep)
+        {
+            selectedresident = null;
+            upgradeui.SetActive(false);
+        }
         if (time == 19) GiveFood();
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -118,14 +154,14 @@ public class GameplayManger : MonoBehaviour
     }
     void KillRandom()
     {
-        Resident[] NbResident = FindObjectsOfType<Resident>();
-        target = Random.Range(0, NbResident.Length);
-        deadMan = NbResident [target].gameObject;
-        resident--;
+        
+        target = Random.Range(0, residents_active.Count);
+        deadMan = residents_active [target];
+        
     }
 
 
-    public void JobConvert(Resident who, int energy, bool ishappy, int age, Resident targetedjob, bool isconvertfinished)
+    public void JobConvert(Resident who, float energy, bool ishappy, int age, Resident targetedjob, bool isconvertfinished)
     {
         GameObject whoobject = who.gameObject;
         if (!(who is Student) && !whoobject.GetComponent<Student>())
@@ -179,39 +215,50 @@ public class GameplayManger : MonoBehaviour
 
         upgradeui.SetActive(true);
         selectedresident = who;
-        switch (who)
+        if (schools_active.Count != 0)
         {
-            case Builder builder:
-                upgradeui_button[0].interactable = false;
-                break;
-            case FoodSearcher foodSearcher:
-                upgradeui_button[1].interactable = false;
-                break;
-            case Miner miner:
-                upgradeui_button[2].interactable = false;
-                break;
-            case Timber timber:
-                upgradeui_button[3].interactable = false;
-                break;
-            case Student student:
-                switch (student.classtarget)
-                {
-                    case Builder builder:
-                        upgradeui_button[0].interactable = false;
-                        break;
-                    case FoodSearcher foodSearcher:
-                        upgradeui_button[1].interactable = false;
-                        break;
-                    case Miner miner:
-                        upgradeui_button[2].interactable = false;
-                        break;
-                    case Timber timber:
-                        upgradeui_button[3].interactable = false;
-                        break;
-                }
-                break;
+            switch (who)
+            {
+                case Builder builder:
+                    upgradeui_button[0].interactable = false;
+                    break;
+                case FoodSearcher foodSearcher:
+                    upgradeui_button[1].interactable = false;
+                    break;
+                case Miner miner:
+                    upgradeui_button[2].interactable = false;
+                    break;
+                case Timber timber:
+                    upgradeui_button[3].interactable = false;
+                    break;
+                case Student student:
+                    switch (student.classtarget)
+                    {
+                        case Builder builder:
+                            upgradeui_button[0].interactable = false;
+                            break;
+                        case FoodSearcher foodSearcher:
+                            upgradeui_button[1].interactable = false;
+                            break;
+                        case Miner miner:
+                            upgradeui_button[2].interactable = false;
+                            break;
+                        case Timber timber:
+                            upgradeui_button[3].interactable = false;
+                            break;
+                    }
+                    break;
 
+            }
         }
+        else
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                upgradeui_button[i].interactable = false;
+            }
+        }
+        
         
     }
 
@@ -233,5 +280,21 @@ public class GameplayManger : MonoBehaviour
         upgradeui.SetActive(false);
         
     }
-    
+
+    private void initTracker()
+    {
+        
+        residents_active.AddRange((GameObject.FindGameObjectsWithTag("resident")).ToList());
+        houses_active.AddRange((GameObject.FindGameObjectsWithTag("house")).ToList());
+        schools_active.AddRange((GameObject.FindGameObjectsWithTag("school")).ToList());
+        farms_active.AddRange((GameObject.FindGameObjectsWithTag("farm")).ToList());
+        
+        forest = GameObject.FindGameObjectsWithTag("forest").ToList();
+        mines = GameObject.FindGameObjectsWithTag("stones").ToList();
+        bush = GameObject.FindGameObjectsWithTag("bush").ToList();
+        
+
+        
+    }
+
 }

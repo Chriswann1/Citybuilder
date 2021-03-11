@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +8,7 @@ public class Resident : MonoBehaviour
 
     [SerializeField] private protected float minrange = 2;
     private protected Transform buildingentrance;
-    public int energy = 100;
+    public float energy = 100;
     public int age = 20;
     public bool Happiness = true;
     private protected GameObject target;
@@ -16,14 +17,16 @@ public class Resident : MonoBehaviour
     public float taskpercent = 0;
     private protected float taskspeed = 20;
     private protected GameObject closesthouse;
-    private protected float sleepspeed = 20;
+    private protected const float sleepspeed = 20;
     private protected float sleeptime = 0;
     private protected Collider thiscollider;
-    private protected string buildingtag;
+    private protected string[] buildingtag = new string[2];
     private protected Vector3 waitingpoint;
     private const float waitrange = 5f;
+
+    private protected bool iscouroutinerunning = false;
     
-    protected enum behaviour
+    public enum behaviour
     {
         idle,
         work,
@@ -33,7 +36,7 @@ public class Resident : MonoBehaviour
         waiting
     }
 
-    [SerializeField] protected behaviour actualbehaviour = behaviour.idle;
+    public behaviour actualbehaviour = behaviour.idle;
     //private int;
 
 
@@ -133,16 +136,41 @@ public class Resident : MonoBehaviour
         {
             Destroy(gameObject);
         }*/
-        if (actualbehaviour != behaviour.sleep && actualbehaviour != behaviour.gosleep && energy <= 0 && actualbehaviour != behaviour.waiting) actualbehaviour = behaviour.gosleep;
+        energy = Mathf.Clamp(energy, 0, 100);
+        
+        if (actualbehaviour != behaviour.sleep && actualbehaviour != behaviour.gosleep && energy <= 10 && actualbehaviour != behaviour.waiting) actualbehaviour = behaviour.gosleep;
 
         switch (actualbehaviour)
         {
+            case behaviour.work:
+                if (!target.activeSelf)
+                {
+                    actualbehaviour = behaviour.gowork;
+                    break;
+                }
 
+                energy -= (taskspeed/4) * Time.deltaTime;
+                break;
 
             case behaviour.gowork:
-                if (target == null)
+
+                /*if (FindClosestWorkPlace(buildingtag[0]) == null && FindClosestWorkPlace(buildingtag[1]) == null)
                 {
-                    target = FindClosestWorkPlace(buildingtag);
+                    actualbehaviour = behaviour.waiting;
+                    break;
+                }*/
+                if (target == null || !target.activeSelf)
+                {
+                    if (buildingtag[1] != null && FindClosestWorkPlace(buildingtag[1]) != null)
+                    {
+                        target = FindClosestWorkPlace(buildingtag[1]);
+
+                    }
+                    else
+                    {
+                        target = FindClosestWorkPlace(buildingtag[0]);
+                    }
+
                     buildingentrance = target.transform.GetChild(0);
                     if (target != null)
                     {
@@ -151,14 +179,15 @@ public class Resident : MonoBehaviour
                     }
 
                 }
-                else
+
+
+                else if (Vector3.Distance(transform.position, buildingentrance.position) <= minrange)
                 {
-                    if (actualbehaviour == behaviour.gowork &&
-                        Vector3.Distance(transform.position, buildingentrance.position) <= minrange)
-                    {
-                        actualbehaviour = behaviour.work;
-                        Debug.Log("Starting to work !");
-                    }
+                    
+                    
+                    actualbehaviour = behaviour.work;
+                    Debug.Log("Starting to work !");
+                    
                 }
 
                 break;
@@ -205,7 +234,7 @@ public class Resident : MonoBehaviour
                             waitingpoint = transform.position;
                             actualbehaviour = behaviour.waiting;
                             closesthouse = null;
-                            StartCoroutine(WaitingMove());
+
                         }
                     }
                 }
@@ -215,13 +244,21 @@ public class Resident : MonoBehaviour
                     waitingpoint = transform.position;
                     actualbehaviour = behaviour.waiting;
                     closesthouse = null;
-                    StartCoroutine(WaitingMove());
+
                 }
                 break;
             case behaviour.waiting:
+                if (!iscouroutinerunning)
+                {
+                    StartCoroutine(WaitingMove());
+                }
                 if (energy <= 10 && GameplayManger.Instance.freeHouse > 0)
                 {
                     actualbehaviour = behaviour.gosleep;
+                }else if (FindClosestWorkPlace(buildingtag[0]) != null)
+                {
+                    actualbehaviour = behaviour.gowork;
+                    target = null;
                 }
                 break;
             
@@ -232,8 +269,35 @@ public class Resident : MonoBehaviour
 
     protected GameObject FindClosestWorkPlace(string workplacetag)
     {
-        
-        GameObject[] workplace = GameObject.FindGameObjectsWithTag(workplacetag);
+
+        GameObject[] workplace;
+        switch (workplacetag)
+        {
+            default:
+                //Debug.LogError("Error, workplace tag not valid => "+workplacetag);
+                return null;
+                
+            case "school":
+                workplace = GameplayManger.Instance.schools_active.ToArray();
+                break;
+            case "house":
+                workplace = GameplayManger.Instance.houses_active.ToArray();
+                break;
+            case "stones":
+                workplace = GameplayManger.Instance.mines.ToArray();
+                break;
+            case "forest":
+                workplace = GameplayManger.Instance.forest.ToArray();
+                break;
+            case "bush":
+                workplace = GameplayManger.Instance.bush.ToArray();
+                break;
+            case "farm":
+                workplace = GameplayManger.Instance.farms_active.ToArray();
+                break;
+                
+        }
+
         if (workplace.Length != 0)
         {
             lastworkplace = workplace[0];
@@ -244,14 +308,19 @@ public class Resident : MonoBehaviour
                     lastworkplace = workplace[i];
                 }
             }
+            
+            return lastworkplace;
+        }
+        else
+        {
+            return null;
         }
 
-        return lastworkplace;
     }
 
     protected IEnumerator WaitingMove()
     {
-        Happiness = false;
+        iscouroutinerunning = true;
         while (actualbehaviour == behaviour.waiting)
         {
             agent.SetDestination(new Vector3(Random.Range(waitingpoint.x - waitrange, waitingpoint.x + waitrange),
@@ -259,6 +328,7 @@ public class Resident : MonoBehaviour
             yield return new WaitForSeconds(3.5f);
         }
 
+        iscouroutinerunning = false;
         yield return null;
     }
 

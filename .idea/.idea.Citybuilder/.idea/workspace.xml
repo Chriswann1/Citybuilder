@@ -2,20 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e6e9212-89c0-421f-be48-b1b2c7c09cbc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Builder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Builder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Vagabond.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Vagabond.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +23,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Resident/Job/Hobo.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Builder.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1pF5oj8HX7xNURojO4XmFC0uUEh" />
   <component name="ProjectViewState">
@@ -82,6 +89,8 @@
       <workItem from="1615402921696" duration="12884000" />
       <workItem from="1615479792189" duration="626000" />
       <workItem from="1615480788326" duration="129000" />
+      <workItem from="1615480989990" duration="11338000" />
+      <workItem from="1615502172657" duration="3985000" />
     </task>
     <servers />
   </component>

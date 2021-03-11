@@ -6,7 +6,7 @@ public class Miner : Resident
     // Start is called before the first frame update
     protected override void Start()
     {
-        buildingtag = "stones";
+        buildingtag[0] = "stones";
         base.Start(); 
         this.GetComponent<MeshRenderer>().material.color = Color.gray;
     }

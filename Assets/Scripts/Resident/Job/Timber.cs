@@ -6,7 +6,7 @@ public class Timber : Resident
     // Start is called before the first frame update
     protected override void Start()
     {
-        buildingtag = "forest";
+        buildingtag[0] = "forest";
         base.Start(); 
         this.GetComponent<MeshRenderer>().material.color = Color.blue;
     }

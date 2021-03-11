@@ -10,7 +10,7 @@ public class Student : Resident
     // Start is called before the first frame update
     protected override void Start()
     {
-        buildingtag = "school";
+        buildingtag[0] = "school";
         base.Start();
         this.GetComponent<MeshRenderer>().material.color = Color.green;
 
