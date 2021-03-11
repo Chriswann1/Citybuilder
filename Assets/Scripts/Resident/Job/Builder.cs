@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 public class Builder : Resident
 {
     // Start is called before the first frame update
@@ -6,6 +8,7 @@ public class Builder : Resident
     {
         
         base.Start();   
+        this.GetComponent<MeshRenderer>().material.color = Color.yellow;
     }
 
     // Update is called once per frame

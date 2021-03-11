@@ -9,11 +9,11 @@ public class Resident : MonoBehaviour
     private protected Transform buildingentrance;
     public int energy = 100;
     public int age = 20;
-    public bool Happiness;
+    public bool Happiness = true;
     private protected GameObject target;
     private protected GameObject lastworkplace;
     private protected NavMeshAgent agent;
-    private protected float taskpercent = 0;
+    public float taskpercent = 0;
     private protected float taskspeed = 20;
     private protected GameObject closesthouse;
     private protected float sleepspeed = 20;
@@ -52,6 +52,7 @@ public class Resident : MonoBehaviour
         }else{
             
             Debug.LogError("NavMeshAgent Component Not Found !");
+            this.enabled = false;
         }
 
         actualbehaviour = behaviour.gowork;
@@ -157,9 +158,7 @@ public class Resident : MonoBehaviour
                     {
                         actualbehaviour = behaviour.work;
                         Debug.Log("Starting to work !");
-
                     }
-
                 }
 
                 break;
@@ -167,6 +166,7 @@ public class Resident : MonoBehaviour
                 sleeptime += sleepspeed * Time.deltaTime;
                 if (sleeptime >= 100)
                 {
+                    Happiness = true;
                     energy = 100;
                     sleeptime = 0;
                     actualbehaviour = behaviour.gowork;
@@ -207,7 +207,6 @@ public class Resident : MonoBehaviour
                             closesthouse = null;
                             StartCoroutine(WaitingMove());
                         }
-                        
                     }
                 }
                 else
@@ -220,7 +219,7 @@ public class Resident : MonoBehaviour
                 }
                 break;
             case behaviour.waiting:
-                if (energy <= 0 && GameplayManger.Instance.freeHouse > 0)
+                if (energy <= 10 && GameplayManger.Instance.freeHouse > 0)
                 {
                     actualbehaviour = behaviour.gosleep;
                 }
@@ -231,11 +230,6 @@ public class Resident : MonoBehaviour
         
     }
 
-    protected void Convert(Resident targetedjob)
-    {
-        GameplayManger.Instance.JobConvert(this, energy, Happiness, age, targetedjob);
-    }
-    
     protected GameObject FindClosestWorkPlace(string workplacetag)
     {
         
@@ -257,6 +251,7 @@ public class Resident : MonoBehaviour
 
     protected IEnumerator WaitingMove()
     {
+        Happiness = false;
         while (actualbehaviour == behaviour.waiting)
         {
             agent.SetDestination(new Vector3(Random.Range(waitingpoint.x - waitrange, waitingpoint.x + waitrange),

@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e6e9212-89c0-421f-be48-b1b2c7c09cbc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Buildmanage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Buildmanage.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Library.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Library.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Museum.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Museum.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameplayManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameplayManger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resident.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resident.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Bastien.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Bastien.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Builder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Builder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Vagabond.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Vagabond.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,23 +26,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Building.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Builder.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Vagabond.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Buildings.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Building.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" />
-        <option value="$PROJECT_DIR$/Assets/GameplayManger.cs" />
-        <option value="$PROJECT_DIR$/Assets/Resident.cs" />
-      </list>
-    </option>
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Resident/Job/Hobo.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1pF5oj8HX7xNURojO4XmFC0uUEh" />
   <component name="ProjectViewState">
@@ -58,7 +45,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -67,7 +54,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -91,6 +78,10 @@
       <workItem from="1615126717073" duration="3362000" />
       <workItem from="1615365480885" duration="160000" />
       <workItem from="1615365874535" duration="456000" />
+      <workItem from="1615369185546" duration="16748000" />
+      <workItem from="1615402921696" duration="12884000" />
+      <workItem from="1615479792189" duration="626000" />
+      <workItem from="1615480788326" duration="129000" />
     </task>
     <servers />
   </component>
@@ -103,10 +94,18 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="254" y="-16" width="1344" height="717" maximized="true" key="dock-window-1" timestamp="1614873685136">
+    <state x="708" y="364" key="#Notifications" timestamp="1615479914075">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="708" y="364" key="#Notifications/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1615479914075" />
+    <state x="802" y="214" key="RiderGenerateDialog" timestamp="1615372930342">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="75" y="-8" width="1380" height="1027" maximized="true" key="dock-window-1/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614858864986" />
+    <state x="802" y="214" key="RiderGenerateDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1615372930342" />
+    <state x="2102" y="-26" width="1609" height="1027" maximized="true" key="dock-window-1" timestamp="1615386121820">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2102" y="-26" width="1609" height="1027" maximized="true" key="dock-window-1/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1615386121820" />
     <state x="254" y="-16" width="1344" height="717" maximized="true" key="dock-window-1/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1614873685136" />
   </component>
 </project>

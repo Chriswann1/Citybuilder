@@ -8,6 +8,7 @@ public class Miner : Resident
     {
         buildingtag = "stones";
         base.Start(); 
+        this.GetComponent<MeshRenderer>().material.color = Color.gray;
     }
 
     // Update is called once per frame

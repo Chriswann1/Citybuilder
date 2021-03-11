@@ -12,7 +12,7 @@ public class Student : Resident
     {
         buildingtag = "school";
         base.Start();
-
+        this.GetComponent<MeshRenderer>().material.color = Color.green;
 
     }
 
@@ -31,7 +31,7 @@ public class Student : Resident
             if (taskpercent >= 100)
             {
                 Debug.Log("Trained !");
-                GameplayManger.Instance.JobConvert(this, energy, Happiness, age, classtarget);
+                GameplayManger.Instance.JobConvert(this, energy, Happiness, age, classtarget, true);
                 actualbehaviour = behaviour.idle;
             }
         }

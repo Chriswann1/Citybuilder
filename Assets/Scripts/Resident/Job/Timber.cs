@@ -8,6 +8,7 @@ public class Timber : Resident
     {
         buildingtag = "forest";
         base.Start(); 
+        this.GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 
     // Update is called once per frame
