@@ -5,12 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Erwann.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +16,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Resident/Job/Hobo.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -28,11 +31,11 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Builder.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Timber.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Student.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Food Searcher.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pF5oj8HX7xNURojO4XmFC0uUEh" />
@@ -91,6 +94,7 @@
       <workItem from="1615480788326" duration="129000" />
       <workItem from="1615480989990" duration="11338000" />
       <workItem from="1615502172657" duration="3985000" />
+      <workItem from="1615552494904" duration="3648000" />
     </task>
     <servers />
   </component>
@@ -101,20 +105,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="708" y="364" key="#Notifications" timestamp="1615479914075">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="708" y="364" key="#Notifications/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1615479914075" />
-    <state x="802" y="214" key="RiderGenerateDialog" timestamp="1615372930342">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="802" y="214" key="RiderGenerateDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1615372930342" />
-    <state x="2102" y="-26" width="1609" height="1027" maximized="true" key="dock-window-1" timestamp="1615386121820">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2102" y="-26" width="1609" height="1027" maximized="true" key="dock-window-1/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1615386121820" />
-    <state x="254" y="-16" width="1344" height="717" maximized="true" key="dock-window-1/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1614873685136" />
   </component>
 </project>

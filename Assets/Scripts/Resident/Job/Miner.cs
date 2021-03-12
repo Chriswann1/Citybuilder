@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Miner : Resident
 {
@@ -30,5 +31,6 @@ public class Miner : Resident
                 }
             }
         }
+        
     }
 }
