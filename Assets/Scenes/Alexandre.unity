@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 849547533}
   - component: {fileID: 849547532}
   - component: {fileID: 849547531}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,8 +499,18 @@ MonoBehaviour:
     type: 3}
   building2: {fileID: 3267914649270580489, guid: 27b17885b593a8042b9d22a21f341347,
     type: 3}
+  farm: {fileID: 0}
+  school: {fileID: 0}
+  museum: {fileID: 0}
+  library: {fileID: 0}
+  house: {fileID: 0}
+  objectContainer: {fileID: 1528849684}
   objectInHand: {fileID: 0}
   inHand: 0
+  spawnCoordinates: {x: 0, y: 0, z: 0}
+  buildingLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!4 &1466515182
 Transform:
   m_ObjectHideFlags: 0
@@ -607,4 +617,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1528849684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528849685}
+  m_Layer: 0
+  m_Name: Spawned buildings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1528849685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528849684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
