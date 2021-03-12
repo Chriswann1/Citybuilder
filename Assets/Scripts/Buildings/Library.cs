@@ -7,7 +7,7 @@ public class Library : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameplayManger.Instance.prosperity = GameplayManger.Instance.prosperity + 3;
+        GameplayManager.Instance.prosperity = GameplayManager.Instance.prosperity + 3;
     }
 
     // Update is called once per frame

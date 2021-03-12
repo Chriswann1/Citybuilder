@@ -22,7 +22,7 @@ public class Miner : Resident
             taskpercent += taskspeed * Time.deltaTime;
             if (taskpercent >= 100)
             {
-                GameplayManger.Instance.stone++;
+                GameplayManager.Instance.stone++;
                 taskpercent = 0;
                 if (Vector3.Distance(transform.position, buildingentrance.position) >= minrange)
                 {

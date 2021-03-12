@@ -20,7 +20,7 @@ public class Timber : Resident
             taskpercent += taskspeed * Time.deltaTime;
             if (taskpercent >= 100)
             {
-                GameplayManger.Instance.wood++;
+                GameplayManager.Instance.wood++;
                 taskpercent = 0;
                 if (Vector3.Distance(transform.position, buildingentrance.position) >= minrange)
                 {

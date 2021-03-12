@@ -31,7 +31,7 @@ public class FoodSearcher : Resident
 
             if (taskpercent >= 100)
             {
-                GameplayManger.Instance.food++;
+                GameplayManager.Instance.food++;
                 taskpercent = 0;
                 if (Vector3.Distance(transform.position, buildingentrance.position) >= minrange)
                 {

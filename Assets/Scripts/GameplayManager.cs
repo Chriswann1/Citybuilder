@@ -1,14 +1,15 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class GameplayManger : MonoBehaviour
+public class GameplayManager : MonoBehaviour
 {
     private Camera _camera;
-    public static GameplayManger Instance;
+    public static GameplayManager Instance;
     public int food;
     public int wood;
     public int stone;
