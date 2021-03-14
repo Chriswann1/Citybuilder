@@ -93,17 +93,16 @@ public class Resident : MonoBehaviour
         energy = Mathf.Clamp(energy, 0, 100);
 
         if (actualbehaviour != behaviour.sleep && actualbehaviour != behaviour.gosleep && energy <= 10 &&
-            actualbehaviour != behaviour.waiting) actualbehaviour = behaviour.gosleep;
+            actualbehaviour != behaviour.waiting)
+        {
+            closesthouse = null;
+            actualbehaviour = behaviour.gosleep;
+        }
 
         switch (actualbehaviour)
         {
             case behaviour.work:
-                if (!target.activeSelf)
-                {
-                    actualbehaviour = behaviour.gowork;
-                    break;
-                }
-
+                
                 energy -= (taskspeed / 4) * Time.deltaTime;
                 break;
 
@@ -114,7 +113,7 @@ public class Resident : MonoBehaviour
                     actualbehaviour = behaviour.waiting;
                     break;
                 }*/
-                if (target == null || !target.activeSelf)
+                if (target == null)
                 {
                     if (buildingtag[1] != null && FindClosestWorkPlace(buildingtag[1]) != null)
                     {
@@ -127,18 +126,23 @@ public class Resident : MonoBehaviour
                     }
                     
 
-                    buildingentrance = target.transform.GetChild(0);
+
                     if (target != null)
                     {
+                        buildingentrance = target.transform.GetChild(0);
                         agent.SetDestination(buildingentrance.position);
                         actualbehaviour = behaviour.gowork;
+                    }
+                    else
+                    {
+                        actualbehaviour = behaviour.waiting;
                     }
 
                 }
                 
 
 
-                else if (Vector3.Distance(transform.position, buildingentrance.position) <= minrange)
+                else if (buildingentrance != null && Vector3.Distance(transform.position, buildingentrance.position) <= minrange)
                 {
 
 
@@ -168,15 +172,17 @@ public class Resident : MonoBehaviour
 
                 break;
             case behaviour.gosleep:
+
                 if (GameplayManager.Instance.freeHouse > 0)
                 {
-                    if (closesthouse == null)
+                    if (closesthouse == null && FindClosestWorkPlace("house") != null)
                     {
                         closesthouse = FindClosestWorkPlace("house");
+                        
                         buildingentrance = closesthouse.transform.GetChild(0);
                         agent.SetDestination(buildingentrance.position);
                     }
-                    else if (Vector3.Distance(transform.position, buildingentrance.position) <= minrange)
+                    else if (Vector3.Distance(transform.position, buildingentrance.position) <= minrange && closesthouse != null)
                     {
                         if (GameplayManager.Instance.freeHouse > 0)
                         {
@@ -191,19 +197,22 @@ public class Resident : MonoBehaviour
                         else
                         {
                             Debug.Log("No Free House Available !");
-                            waitingpoint = transform.position;
                             actualbehaviour = behaviour.waiting;
-                            closesthouse = null;
+
 
                         }
+                    }
+                    else
+                    {
+                        actualbehaviour = behaviour.waiting;
                     }
                 }
                 else
                 {
                     Debug.Log("No Free House available !");
-                    waitingpoint = transform.position;
+
                     actualbehaviour = behaviour.waiting;
-                    closesthouse = null;
+
 
                 }
 
@@ -216,13 +225,16 @@ public class Resident : MonoBehaviour
 
                 if (energy <= 10 && GameplayManager.Instance.freeHouse > 0)
                 {
+                    closesthouse = null;
                     actualbehaviour = behaviour.gosleep;
                 }
                 else if (FindClosestWorkPlace(buildingtag[0]) != null)
                 {
                     actualbehaviour = behaviour.gowork;
-                    target = null;
+                    
                 }
+                target = null;
+                buildingentrance = null;
 
                 break;
 
@@ -242,10 +254,10 @@ public class Resident : MonoBehaviour
                 return null;
 
             case "school":
-                workplace = GameplayManager.Instance.schools_active.ToArray();
+                workplace = GameplayManager.Instance.schools.ToArray();
                 break;
             case "house":
-                workplace = GameplayManager.Instance.houses_active.ToArray();
+                workplace = GameplayManager.Instance.houses.ToArray();
                 break;
             case "stones":
                 workplace = GameplayManager.Instance.mines.ToArray();
@@ -257,8 +269,19 @@ public class Resident : MonoBehaviour
                 workplace = GameplayManager.Instance.bush.ToArray();
                 break;
             case "farm":
-                workplace = GameplayManager.Instance.farms_active.ToArray();
+                workplace = GameplayManager.Instance.farms.ToArray();
                 break;
+            case "tobuild":
+                if (GameplayManager.Instance.currentbuildingtobuild != null)
+                {
+                    GameObject tobuild = GameplayManager.Instance.currentbuildingtobuild.gameObject;
+                    return tobuild;
+                }
+                else
+                {
+                    return null;
+                }
+
 
         }
 
@@ -349,6 +372,7 @@ public class Resident : MonoBehaviour
     {
 
         iscouroutinerunning = true;
+        waitingpoint = transform.position;
 
         if (!(this is Hobo) && energy <= 10)
         {
