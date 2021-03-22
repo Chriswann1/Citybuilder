@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -25,6 +25,10 @@ public class MenuManager : MonoBehaviour
     public void OnClick_Crédits()
     {
         panelcrédit.SetActive(true);
+    }
+    public void Return_Menu()
+    {
+        panelcrédit.SetActive(false);
     }
     public void Doquit()
 
