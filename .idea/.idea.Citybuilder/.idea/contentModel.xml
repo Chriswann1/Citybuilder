@@ -33,6 +33,7 @@
             <e p="Museum.cs" t="Include" />
           </e>
           <e p="GameplayManager.cs" t="Include" />
+          <e p="GameplayManger.cs" t="Include" />
           <e p="MenuManager.cs" t="Include" />
           <e p="PoolManager.cs" t="Include" />
           <e p="README.txt" t="Include" />

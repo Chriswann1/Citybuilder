@@ -22,15 +22,13 @@ public class Resident : MonoBehaviour
     private protected Collider thiscollider;
     private protected string[] buildingtag = new string[2];
     private protected Vector3 waitingpoint;
-
-    private protected bool iscouroutinerunning = false;
-
-
-
     private const float waitrange = 5f;
+    private bool iscouroutinerunning = false;
+
+    private bool agePassed;
+    private bool sleepOut;
 
     public enum behaviour
-
     {
         idle,
         work,
@@ -56,9 +54,7 @@ public class Resident : MonoBehaviour
         if (this.TryGetComponent<NavMeshAgent>(out agent))
         {
             Debug.Log("NavMeshAgent Component Found !");
-        }
-        else
-        {
+        } else {
 
             Debug.LogError("NavMeshAgent Component Not Found !");
             this.enabled = false;
@@ -77,18 +73,23 @@ public class Resident : MonoBehaviour
                 energy = 100;
         
             }*/
-        if (GameplayManager.Instance.time == 19)
+        /*
+        if (GameplayManger.Instance.time == 19 && agePassed == false)
         {
             energy = 10;
+            Age();
+            agePassed = true;
         }
-
-        if (GameplayManager.Instance.time == 20 && Happiness == false)
+        if (GameplayManger.Instance.time == 20 && Happiness == false && sleepOut == false)
         {
-            GameplayManager.Instance.prosperity = GameplayManager.Instance.prosperity - 1;
+            GameplayManger.Instance.prosperity = GameplayManger.Instance.prosperity - 1;
+            sleepOut = true;
         }
-
-
-     
+        if (GameplayManger.Instance.time == 2)
+        {
+            agePassed = false;
+            sleepOut = false;
+        }*/
 
         energy = Mathf.Clamp(energy, 0, 100);
 
@@ -99,7 +100,7 @@ public class Resident : MonoBehaviour
             actualbehaviour = behaviour.gosleep;
         }
 
-        switch (actualbehaviour)
+            switch (actualbehaviour)
         {
             case behaviour.work:
                 
@@ -241,7 +242,9 @@ public class Resident : MonoBehaviour
 
         }
 
+        
     }
+    
 
     protected GameObject FindClosestWorkPlace(string workplacetag)
     {
@@ -305,7 +308,30 @@ public class Resident : MonoBehaviour
         }
 
     }
-    
+
+    protected IEnumerator WaitingMove()
+    {
+            
+
+        iscouroutinerunning = true;
+        waitingpoint = transform.position;
+
+        if (!(this is Hobo) && energy <= 10)
+        {
+            Happiness = false;
+        }
+
+        while (actualbehaviour == behaviour.waiting)
+        {
+            agent.SetDestination(new Vector3(Random.Range(waitingpoint.x - waitrange, waitingpoint.x + waitrange),
+                waitingpoint.y, Random.Range(waitingpoint.z - waitrange, waitingpoint.z + waitrange)));
+            yield return new WaitForSeconds(3.5f);
+        }
+
+        iscouroutinerunning = false;
+        yield return null;
+    }
+
     void Age()
     {
         if (age < 50)
@@ -337,18 +363,20 @@ public class Resident : MonoBehaviour
             }
         }
 
+
         else if (60 <= age && age < 65)
         {
             if (Random.Range(1, 10) >= 4)
             {
                 Destroy(gameObject);
+               
             }
             else
             {
                 age++;
             }
+            
         }
-
         else if (65 <= age && age < 70)
         {
             if (Random.Range(1, 10) >= 2)
@@ -360,34 +388,17 @@ public class Resident : MonoBehaviour
                 age++;
             }
         }
-
         else if (age <= 70)
         {
             Destroy(gameObject);
         }
+        else
 
+        {
+            age++;
+        }
     }
 
-    protected IEnumerator WaitingMove()
-    {
 
-        iscouroutinerunning = true;
-        waitingpoint = transform.position;
-
-        if (!(this is Hobo) && energy <= 10)
-        {
-            Happiness = false;
-        }
-
-        while (actualbehaviour == behaviour.waiting)
-        {
-            agent.SetDestination(new Vector3(Random.Range(waitingpoint.x - waitrange, waitingpoint.x + waitrange),
-                waitingpoint.y, Random.Range(waitingpoint.z - waitrange, waitingpoint.z + waitrange)));
-            yield return new WaitForSeconds(3.5f);
-        }
-
-        iscouroutinerunning = false;
-        yield return null;
-    }
-
+    
 }

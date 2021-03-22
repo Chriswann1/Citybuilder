@@ -33,6 +33,8 @@ public class GameplayManager : MonoBehaviour
     
     private int target;
     private GameObject deadMan;
+    [SerializeField] private bool paused;
+    [SerializeField] private int day;
     
     
 
@@ -71,9 +73,9 @@ public class GameplayManager : MonoBehaviour
         freeHouse = houses.Count;
         JobConvert(testminer, testminer.energy, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>(), false);
         JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>(), false);
-        if (!(Camera.main is null))
-            ui_linerenderer.SetPosition(0,
-                Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
+        if (!(Camera.main is null)) ui_linerenderer.SetPosition(0, Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
+        
+        //StartCoroutine("Time");
 
     }
 
@@ -86,7 +88,7 @@ public class GameplayManager : MonoBehaviour
             selectedresident = null;
             upgradeui.SetActive(false);
         }
-        if (time == 19) GiveFood();
+        //if (time == 19) GiveFood();
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out Cursorray, 200, cursorray_mask))
@@ -104,6 +106,7 @@ public class GameplayManager : MonoBehaviour
             ui_linerenderer.SetPosition(1, new Vector3(selectedresident.transform.position.x, Camera.main.ScreenToWorldPoint(upgradeui.transform.position).y-2f, selectedresident.transform.position.z));
         }
 
+
         /*
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -116,40 +119,20 @@ public class GameplayManager : MonoBehaviour
         if(currentbuildingtobuild == null && tobuildqueue.Count > 0) currentbuildingtobuild = tobuildqueue.Dequeue();
 
 
-    }
 
+        //GiveFood();
+
+    }
+    /*
     void GiveFood()
     {
-
-        if (food >= resident)
-        {
-            //Eat = true;
-        }
-        /*else
-        {
-            Resident[] NbResident = FindObjectsOfType<Resident>();
-            int diff = resident - food;
-            for (int i = 1; i <= NbResident.Length || diff != 0; i++)
-            {
-                Random.Range(1, 3)
-                {
-                    Destroy(gameObject);
-                    diff--; 
-                }
-            }
-        }*/
-        else
-        {
-            KillRandom();
-        }
-
         if (food <= resident)
         { 
             KillRandom();
             GiveFood();
 
         }
-    }
+    }*/
     void KillRandom()
     {
         
@@ -295,7 +278,6 @@ public class GameplayManager : MonoBehaviour
         mines = GameObject.FindGameObjectsWithTag("stones").ToList();
         bush = GameObject.FindGameObjectsWithTag("bush").ToList();
         
-
         
     }
     
@@ -331,5 +313,28 @@ public class GameplayManager : MonoBehaviour
     {
         
     }
+    
+    /*IEnumerator Time()
+    {
+        while (!paused)
+        {
+            time = time++;
+            new WaitForSeconds(5f);
+
+            if (time == 24)
+            {
+                time = 0;
+                day++;
+            }
+
+            if (time == 25)
+            {
+                Debug.Log("25Hin1day");
+
+            }
+        }
+        return;
+    }*/
+
 
 }
