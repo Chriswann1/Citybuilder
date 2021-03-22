@@ -17,9 +17,13 @@ public class GameplayManager : MonoBehaviour
     public int freeHouse;
     
     public Transform sleepinstance;
-    public List<Building> tobuildlist;
+    
+    public Queue<Building> tobuildqueue = new Queue<Building>();
+    public Building currentbuildingtobuild;
 
+    
     public Resident testminer, testtimber;
+
 
 
     [SerializeField] private GameObject upgradeui;
@@ -33,16 +37,13 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private int day;
     
     
-    public List<GameObject> residents_active = new List<GameObject>();
-    public List<GameObject> houses_active = new List<GameObject>();
-    public List<GameObject> schools_active = new List<GameObject>();
-    public List<GameObject> farms_active = new List<GameObject>();
-    ///////////////////////////////////////////////////////////////////
-    public List<GameObject> residents_unactive = new List<GameObject>();
-    public List<GameObject> houses_unactive = new List<GameObject>();
-    public List<GameObject> schools_unactive = new List<GameObject>();
-    public List<GameObject> farms_unactive = new List<GameObject>();
-    //////////////////////////////////////////////////////////////////
+
+    public List<GameObject> houses = new List<GameObject>();
+    public List<GameObject> schools = new List<GameObject>();
+    public List<GameObject> farms = new List<GameObject>();
+    public List<GameObject> libraries = new List<GameObject>();
+    public List<GameObject> museums = new List<GameObject>();
+    
     public List<GameObject> mines = new List<GameObject>();
     public List<GameObject> forest = new List<GameObject>();
     public List<GameObject> bush = new List<GameObject>();
@@ -69,41 +70,25 @@ public class GameplayManager : MonoBehaviour
         if (upgradeui != null && upgradeui.GetComponent<LineRenderer>() != null) ui_linerenderer = upgradeui.GetComponent<LineRenderer>();
 
         initTracker();
-        freeHouse = houses_active.Count;
+        freeHouse = houses.Count;
         JobConvert(testminer, testminer.energy, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>(), false);
         JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>(), false);
-        if (!(Camera.main is null))
-            ui_linerenderer.SetPosition(0,
-                Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
-        StartCoroutine("Time");
+        if (!(Camera.main is null)) ui_linerenderer.SetPosition(0, Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
+        
+        //StartCoroutine("Time");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < schools_active.Count; i++)
-        {
-            if (!schools_active[i].activeSelf)
-            {
-                schools_unactive.Add(schools_active[i]);
-                schools_active.Remove(schools_active[i]);
-            }
-        }
 
-        for (int i = 0; i < schools_unactive.Count; i++)
-        {
-            if (schools_unactive[i].activeSelf)
-            {
-                schools_active.Add(schools_unactive[i]);
-                schools_unactive.Remove(schools_unactive[i]);
-            }
-        }
         if (selectedresident != null && selectedresident.actualbehaviour == Resident.behaviour.sleep)
         {
             selectedresident = null;
             upgradeui.SetActive(false);
         }
-        if (time == 19) GiveFood();
+        //if (time == 19) GiveFood();
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out Cursorray, 200, cursorray_mask))
@@ -121,9 +106,24 @@ public class GameplayManager : MonoBehaviour
             ui_linerenderer.SetPosition(1, new Vector3(selectedresident.transform.position.x, Camera.main.ScreenToWorldPoint(upgradeui.transform.position).y-2f, selectedresident.transform.position.z));
         }
 
-        GiveFood();
-    }
 
+        /*
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GameObject housetosupp = houses[0].gameObject;
+            houses.Remove(houses[0]);
+            Destroy(housetosupp);
+        }
+        */
+        
+        if(currentbuildingtobuild == null && tobuildqueue.Count > 0) currentbuildingtobuild = tobuildqueue.Dequeue();
+
+
+
+        //GiveFood();
+
+    }
+    /*
     void GiveFood()
     {
         if (food <= resident)
@@ -132,12 +132,12 @@ public class GameplayManager : MonoBehaviour
             GiveFood();
 
         }
-    }
+    }*/
     void KillRandom()
     {
         
-        target = Random.Range(0, residents_active.Count);
-        deadMan = residents_active [target];
+        target = Random.Range(0, PoolManager.residents_active.Count);
+        deadMan = PoolManager.residents_active [target];
         
     }
 
@@ -196,7 +196,7 @@ public class GameplayManager : MonoBehaviour
 
         upgradeui.SetActive(true);
         selectedresident = who;
-        if (schools_active.Count != 0)
+        if (schools.Count != 0)
         {
             switch (who)
             {
@@ -265,18 +265,55 @@ public class GameplayManager : MonoBehaviour
     private void initTracker()
     {
         
-        residents_active.AddRange((GameObject.FindGameObjectsWithTag("resident")).ToList());
-        houses_active.AddRange((GameObject.FindGameObjectsWithTag("house")).ToList());
-        schools_active.AddRange((GameObject.FindGameObjectsWithTag("school")).ToList());
-        farms_active.AddRange((GameObject.FindGameObjectsWithTag("farm")).ToList());
+        
+        houses.AddRange((GameObject.FindGameObjectsWithTag("house")).ToList());
+        schools.AddRange((GameObject.FindGameObjectsWithTag("school")).ToList());
+        farms.AddRange((GameObject.FindGameObjectsWithTag("farm")).ToList());
+        libraries.AddRange((GameObject.FindGameObjectsWithTag("library")).ToList());
+        museums.AddRange((GameObject.FindGameObjectsWithTag("museum")).ToList());
+        
+        
         
         forest = GameObject.FindGameObjectsWithTag("forest").ToList();
         mines = GameObject.FindGameObjectsWithTag("stones").ToList();
         bush = GameObject.FindGameObjectsWithTag("bush").ToList();
         
-
         
     }
+    
+    public void ActivateBuilding(Building building)
+    {
+        currentbuildingtobuild = null;
+        switch (building.name)
+        {
+            default:
+                Debug.LogError("ERROR BUILDING");
+                break;
+            case "house":
+                houses.Add(building.gameObject);
+                break;
+            case "farm":
+                farms.Add(building.gameObject);
+                break;
+            case "school":
+                schools.Add(building.gameObject);
+                break;
+            case "museum":
+                museums.Add(building.gameObject);
+                break;
+            case "library":
+                libraries.Add(building.gameObject);
+                break;
+        }
+        if(tobuildqueue.Count > 0) currentbuildingtobuild = tobuildqueue.Dequeue();
+       
+    }
+
+    public void DestroyBuilding(GameObject building)
+    {
+        
+    }
+    
     /*IEnumerator Time()
     {
         while (!paused)
@@ -298,5 +335,6 @@ public class GameplayManager : MonoBehaviour
         }
         return;
     }*/
+
 
 }

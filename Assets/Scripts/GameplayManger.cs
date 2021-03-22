@@ -106,12 +106,12 @@ public class GameplayManger : MonoBehaviour
 
         }
     }
-   IEnumerator Time()
-   {
+    IEnumerator Time()
+    {
         while(!paused)
         {                
             time = time++;
-            new WaitForSeconds(5f);
+            yield return new WaitForSeconds(5f);
             
             if (time == 24)
             {
@@ -125,7 +125,7 @@ public class GameplayManger : MonoBehaviour
                 
             }
         }
-       // return;
-   }
+        yield return null;
+    }
     
 }
