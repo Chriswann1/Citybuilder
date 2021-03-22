@@ -29,6 +29,8 @@ public class GameplayManager : MonoBehaviour
     
     private int target;
     private GameObject deadMan;
+    [SerializeField] private bool paused;
+    [SerializeField] private int day;
     
     
     public List<GameObject> residents_active = new List<GameObject>();
@@ -73,6 +75,7 @@ public class GameplayManager : MonoBehaviour
         if (!(Camera.main is null))
             ui_linerenderer.SetPosition(0,
                 Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
+        StartCoroutine("Time");
     }
 
     // Update is called once per frame
@@ -118,7 +121,7 @@ public class GameplayManager : MonoBehaviour
             ui_linerenderer.SetPosition(1, new Vector3(selectedresident.transform.position.x, Camera.main.ScreenToWorldPoint(upgradeui.transform.position).y-2f, selectedresident.transform.position.z));
         }
 
-
+        GiveFood();
     }
 
     void GiveFood()
@@ -274,5 +277,26 @@ public class GameplayManager : MonoBehaviour
 
         
     }
+    /*IEnumerator Time()
+    {
+        while (!paused)
+        {
+            time = time++;
+            new WaitForSeconds(5f);
+
+            if (time == 24)
+            {
+                time = 0;
+                day++;
+            }
+
+            if (time == 25)
+            {
+                Debug.Log("25Hin1day");
+
+            }
+        }
+        return;
+    }*/
 
 }

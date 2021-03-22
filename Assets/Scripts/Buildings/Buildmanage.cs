@@ -5,12 +5,16 @@ using UnityEngine;
 public class Buildmanage : MonoBehaviour
 {
     GameplayManager manager = GameplayManager.Instance;
+    GameObject TargetDestroy;
     // Start is called before the first frame update
 
 
     // Update is called once per frame
-   
 
+    void Update()
+    {
+        
+    }
 
     // Update is called once per frame
     void BuildFarm()

@@ -42,10 +42,10 @@ public class GameplayManger : MonoBehaviour
 
         housenumber = GameObject.FindGameObjectsWithTag("house").Length;
         freeHouse = housenumber;
-        JobConvert(testminer, testminer.energy, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>());
-        JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>());
+        //JobConvert(testminer, testminer.energy, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>());
+        //JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>());
 
-        StartCoroutine(Time());
+        StartCoroutine("Time");
 
     }
 
@@ -107,7 +107,7 @@ public class GameplayManger : MonoBehaviour
         }
     }
    IEnumerator Time()
-    {
+   {
         while(!paused)
         {                
             time = time++;
@@ -122,9 +122,10 @@ public class GameplayManger : MonoBehaviour
             if (time == 25)
             {
                 Debug.Log("25Hin1day");
-                return;
+                
             }
         }
-    }*/
+       // return;
+   }
     
 }

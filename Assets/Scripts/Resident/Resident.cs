@@ -24,6 +24,9 @@ public class Resident : MonoBehaviour
     private protected Vector3 waitingpoint;
     private const float waitrange = 5f;
 
+    private bool agePassed;
+    private bool sleepOut;
+
     protected enum behaviour
     {
         idle,
@@ -69,28 +72,24 @@ public class Resident : MonoBehaviour
                 energy = 100;
         
             }*/
-        if (GameplayManager.Instance.time == 19)
+        if (GameplayManger.Instance.time == 19 && agePassed == false)
         {
             energy = 10;
+            Age();
+            agePassed = true;
         }
-
-        GameplayManger.Instance.resident = GameplayManger.Instance.resident + 1;
-        energy = 100;
-    }*/
-        // Update is called once per frame
-        void Update()
+        if (GameplayManger.Instance.time == 20 && Happiness == false && sleepOut == false)
         {
-            if (GameplayManger.Instance.time == 19)
-            {
-                energy = 10;
-                Age();
-            }
-            if (GameplayManger.Instance.time == 20 && Happiness == false)
-            {
-                GameplayManger.Instance.prosperity = GameplayManger.Instance.prosperity - 1;
-            }
-
+            GameplayManger.Instance.prosperity = GameplayManger.Instance.prosperity - 1;
+            sleepOut = true;
         }
+        if (GameplayManger.Instance.time == 2)
+        {
+            agePassed = false;
+            sleepOut = false;
+        }
+    
+        // Update is called once per frame
         void Age()
         {
             if (age < 50)
@@ -276,7 +275,7 @@ public class Resident : MonoBehaviour
 
         protected IEnumerator WaitingMove()
         {
-            if (!(this is Vagabond) && energy <= 10)
+            if (!(this is Vagabond) && energy <= 10f)
             {
                 Happiness = false;
             }
