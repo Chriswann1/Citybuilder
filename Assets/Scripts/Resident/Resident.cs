@@ -22,15 +22,9 @@ public class Resident : MonoBehaviour
     private protected Collider thiscollider;
     private protected string[] buildingtag = new string[2];
     private protected Vector3 waitingpoint;
-
-    private protected bool iscouroutinerunning = false;
-
-
-
     private const float waitrange = 5f;
 
-    public enum behaviour
-
+    protected enum behaviour
     {
         idle,
         work,
@@ -56,9 +50,7 @@ public class Resident : MonoBehaviour
         if (this.TryGetComponent<NavMeshAgent>(out agent))
         {
             Debug.Log("NavMeshAgent Component Found !");
-        }
-        else
-        {
+        } else {
 
             Debug.LogError("NavMeshAgent Component Not Found !");
             this.enabled = false;
@@ -82,288 +74,223 @@ public class Resident : MonoBehaviour
             energy = 10;
         }
 
-        if (GameplayManager.Instance.time == 20 && Happiness == false)
+        GameplayManger.Instance.resident = GameplayManger.Instance.resident + 1;
+        energy = 100;
+    }*/
+        // Update is called once per frame
+        void Update()
         {
-            GameplayManager.Instance.prosperity = GameplayManager.Instance.prosperity - 1;
+            if (GameplayManger.Instance.time == 19)
+            {
+                energy = 10;
+                Age();
+            }
+            if (GameplayManger.Instance.time == 20 && Happiness == false)
+            {
+                GameplayManger.Instance.prosperity = GameplayManger.Instance.prosperity - 1;
+            }
+
         }
-
-
-     
-
-        energy = Mathf.Clamp(energy, 0, 100);
-
-        if (actualbehaviour != behaviour.sleep && actualbehaviour != behaviour.gosleep && energy <= 10 &&
-            actualbehaviour != behaviour.waiting) actualbehaviour = behaviour.gosleep;
-
-        switch (actualbehaviour)
+        void Age()
         {
-            case behaviour.work:
-                if (!target.activeSelf)
+            if (age < 50)
+            {
+                age++;
+            }
+            if (50 <= age && age < 55)
+            {
+                if (Random.Range(1, 10) >= 10)
                 {
-                    actualbehaviour = behaviour.gowork;
-                    break;
+                    Destroy(gameObject);
                 }
-
-                energy -= (taskspeed / 4) * Time.deltaTime;
-                break;
-
-            case behaviour.gowork:
-                
-                /*if (FindClosestWorkPlace(buildingtag[0]) == null && FindClosestWorkPlace(buildingtag[1]) == null)
+                else
                 {
-                    actualbehaviour = behaviour.waiting;
-                    break;
-                }*/
-                if (target == null || !target.activeSelf)
+                    age++;
+                }
+            }
+
+            else if (55 <= age && age < 60)
+            {
+                if (Random.Range(1, 10) >= 7)
                 {
-                    if (buildingtag[1] != null && FindClosestWorkPlace(buildingtag[1]) != null)
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    age++;
+                }
+            }
+
+            else if (60 <= age && age < 65)
+            {
+                if (Random.Range(1, 10) >= 4)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    age++;
+                }
+            }
+
+            else if (65 <= age && age < 70)
+            {
+                if (Random.Range(1, 10) >= 2)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    age++;
+                }
+            }
+
+            else if (age <= 70)
+            {
+                Destroy(gameObject);
+            }
+
+            if (actualbehaviour != behaviour.sleep && actualbehaviour != behaviour.gosleep && energy <= 0 && actualbehaviour != behaviour.waiting) actualbehaviour = behaviour.gosleep;
+
+            switch (actualbehaviour)
+            {
+
+
+                case behaviour.gowork:
+                    if (target == null)
                     {
-                        target = FindClosestWorkPlace(buildingtag[1]);
+                        target = FindClosestWorkPlace(buildingtag);
+                        buildingentrance = target.transform.GetChild(0);
+                        if (target != null)
+                        {
+                            agent.SetDestination(buildingentrance.position);
+                            actualbehaviour = behaviour.gowork;
+                        }
 
                     }
                     else
                     {
-                        target = FindClosestWorkPlace(buildingtag[0]);
-                    }
-                    
+                        if (actualbehaviour == behaviour.gowork &&
+                            Vector3.Distance(transform.position, buildingentrance.position) <= minrange)
+                        {
+                            actualbehaviour = behaviour.work;
+                            Debug.Log("Starting to work !");
 
-                    buildingentrance = target.transform.GetChild(0);
-                    if (target != null)
+                        }
+
+                    }
+
+                    break;
+                case behaviour.sleep:
+                    sleeptime += sleepspeed * Time.deltaTime;
+                    if (sleeptime >= 100)
                     {
-                        agent.SetDestination(buildingentrance.position);
+                        energy = 100;
+                        sleeptime = 0;
                         actualbehaviour = behaviour.gowork;
+                        target = null;
+                        thiscollider.enabled = true;
+                        transform.position = buildingentrance.position;
+                        agent.enabled = true;
+                        GameplayManger.Instance.freeHouse++;
+                        Debug.Log("Exit Sleep Mode");
                     }
-
-                }
-                
-
-
-                else if (Vector3.Distance(transform.position, buildingentrance.position) <= minrange)
-                {
-
-
-                    actualbehaviour = behaviour.work;
-                    Debug.Log("Starting to work !");
-
-                }
-                
-   
-
-                break;
-            case behaviour.sleep:
-                sleeptime += sleepspeed * Time.deltaTime;
-                if (sleeptime >= 100)
-                {
-                    Happiness = true;
-                    energy = 100;
-                    sleeptime = 0;
-                    actualbehaviour = behaviour.gowork;
-                    target = null;
-                    thiscollider.enabled = true;
-                    transform.position = buildingentrance.position;
-                    agent.enabled = true;
-                    GameplayManager.Instance.freeHouse++;
-                    Debug.Log("Exit Sleep Mode");
-                }
-
-                break;
-            case behaviour.gosleep:
-                if (GameplayManager.Instance.freeHouse > 0)
-                {
-                    if (closesthouse == null)
+                    break;
+                case behaviour.gosleep:
+                    if (GameplayManger.Instance.freeHouse > 0)
                     {
-                        closesthouse = FindClosestWorkPlace("house");
-                        buildingentrance = closesthouse.transform.GetChild(0);
-                        agent.SetDestination(buildingentrance.position);
-                    }
-                    else if (Vector3.Distance(transform.position, buildingentrance.position) <= minrange)
-                    {
-                        if (GameplayManager.Instance.freeHouse > 0)
+                        if (closesthouse == null)
                         {
-                            actualbehaviour = behaviour.sleep;
-                            closesthouse = null;
-                            Debug.Log("Enter in Sleep mode");
-                            GameplayManager.Instance.freeHouse--;
-                            thiscollider.enabled = false;
-                            agent.enabled = false;
-                            transform.position = GameplayManager.Instance.sleepinstance.position;
+                            closesthouse = FindClosestWorkPlace("house");
+                            buildingentrance = closesthouse.transform.GetChild(0);
+                            agent.SetDestination(buildingentrance.position);
                         }
-                        else
+                        else if (Vector3.Distance(transform.position, buildingentrance.position) <= minrange)
                         {
-                            Debug.Log("No Free House Available !");
-                            waitingpoint = transform.position;
-                            actualbehaviour = behaviour.waiting;
-                            closesthouse = null;
+                            if (GameplayManger.Instance.freeHouse > 0)
+                            {
+                                actualbehaviour = behaviour.sleep;
+                                closesthouse = null;
+                                Debug.Log("Enter in Sleep mode");
+                                GameplayManger.Instance.freeHouse--;
+                                thiscollider.enabled = false;
+                                agent.enabled = false;
+                                transform.position = GameplayManger.Instance.sleepinstance.position;
+                            }
+                            else
+                            {
+                                Debug.Log("No Free House Available !");
+                                waitingpoint = transform.position;
+                                actualbehaviour = behaviour.waiting;
+                                closesthouse = null;
+                                StartCoroutine(WaitingMove());
+                            }
 
                         }
                     }
-                }
-                else
-                {
-                    Debug.Log("No Free House available !");
-                    waitingpoint = transform.position;
-                    actualbehaviour = behaviour.waiting;
-                    closesthouse = null;
+                    else
+                    {
+                        Debug.Log("No Free House available !");
+                        waitingpoint = transform.position;
+                        actualbehaviour = behaviour.waiting;
+                        closesthouse = null;
+                        StartCoroutine(WaitingMove());
+                    }
+                    break;
+                case behaviour.waiting:
+                    if (energy <= 0 && GameplayManger.Instance.freeHouse > 0)
+                    {
+                        actualbehaviour = behaviour.gosleep;
+                    }
+                    break;
 
-                }
 
-                break;
-            case behaviour.waiting:
-                if (!iscouroutinerunning)
-                {
-                    StartCoroutine(WaitingMove());
-                }
-
-                if (energy <= 10 && GameplayManager.Instance.freeHouse > 0)
-                {
-                    actualbehaviour = behaviour.gosleep;
-                }
-                else if (FindClosestWorkPlace(buildingtag[0]) != null)
-                {
-                    actualbehaviour = behaviour.gowork;
-                    target = null;
-                }
-
-                break;
-
+            }
 
         }
-
     }
 
-    protected GameObject FindClosestWorkPlace(string workplacetag)
-    {
-
-        GameObject[] workplace;
-        switch (workplacetag)
+        protected void Convert(Resident targetedjob)
         {
-            default:
-                //Debug.LogError("Error, workplace tag not valid => "+workplacetag);
-                return null;
-
-            case "school":
-                workplace = GameplayManager.Instance.schools_active.ToArray();
-                break;
-            case "house":
-                workplace = GameplayManager.Instance.houses_active.ToArray();
-                break;
-            case "stones":
-                workplace = GameplayManager.Instance.mines.ToArray();
-                break;
-            case "forest":
-                workplace = GameplayManager.Instance.forest.ToArray();
-                break;
-            case "bush":
-                workplace = GameplayManager.Instance.bush.ToArray();
-                break;
-            case "farm":
-                workplace = GameplayManager.Instance.farms_active.ToArray();
-                break;
-
+            GameplayManger.Instance.JobConvert(this, energy, Happiness, age, targetedjob);
         }
 
-        if (workplace.Length != 0)
+        protected GameObject FindClosestWorkPlace(string workplacetag)
         {
-            lastworkplace = workplace[0];
-            for (int i = 1; i < workplace.Length; i++)
+
+            GameObject[] workplace = GameObject.FindGameObjectsWithTag(workplacetag);
+            if (workplace.Length != 0)
             {
-                if (Vector3.Distance(transform.position, lastworkplace.transform.position) >
-                    Vector3.Distance(transform.position, workplace[i].transform.position))
+                lastworkplace = workplace[0];
+                for (int i = 1; i < workplace.Length; i++)
                 {
-                    lastworkplace = workplace[i];
+                    if (Vector3.Distance(transform.position, lastworkplace.transform.position) > Vector3.Distance(transform.position, workplace[i].transform.position))
+                    {
+                        lastworkplace = workplace[i];
+                    }
                 }
             }
 
             return lastworkplace;
         }
-        else
+
+        protected IEnumerator WaitingMove()
         {
-            return null;
+            if (!(this is Vagabond) && energy <= 10)
+            {
+                Happiness = false;
+            }
+            while (actualbehaviour == behaviour.waiting)
+            {
+                agent.SetDestination(new Vector3(Random.Range(waitingpoint.x - waitrange, waitingpoint.x + waitrange),
+                    waitingpoint.y, Random.Range(waitingpoint.z - waitrange, waitingpoint.z + waitrange)));
+                yield return new WaitForSeconds(3.5f);
+            }
+
+            yield return null;
         }
 
-    }
+
+
     
-    void Age()
-    {
-        if (age < 50)
-        {
-            age++;
-        }
-
-        if (50 <= age && age < 55)
-        {
-            if (Random.Range(1, 10) >= 10)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                age++;
-            }
-        }
-
-        else if (55 <= age && age < 60)
-        {
-            if (Random.Range(1, 10) >= 7)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                age++;
-            }
-        }
-
-        else if (60 <= age && age < 65)
-        {
-            if (Random.Range(1, 10) >= 4)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                age++;
-            }
-        }
-
-        else if (65 <= age && age < 70)
-        {
-            if (Random.Range(1, 10) >= 2)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                age++;
-            }
-        }
-
-        else if (age <= 70)
-        {
-            Destroy(gameObject);
-        }
-
-    }
-
-    protected IEnumerator WaitingMove()
-    {
-
-        iscouroutinerunning = true;
-
-        if (!(this is Hobo) && energy <= 10)
-        {
-            Happiness = false;
-        }
-
-        while (actualbehaviour == behaviour.waiting)
-        {
-            agent.SetDestination(new Vector3(Random.Range(waitingpoint.x - waitrange, waitingpoint.x + waitrange),
-                waitingpoint.y, Random.Range(waitingpoint.z - waitrange, waitingpoint.z + waitrange)));
-            yield return new WaitForSeconds(3.5f);
-        }
-
-        iscouroutinerunning = false;
-        yield return null;
-    }
-
 }

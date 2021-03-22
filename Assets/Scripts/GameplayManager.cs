@@ -123,29 +123,6 @@ public class GameplayManager : MonoBehaviour
 
     void GiveFood()
     {
-
-        if (food >= resident)
-        {
-            //Eat = true;
-        }
-        /*else
-        {
-            Resident[] NbResident = FindObjectsOfType<Resident>();
-            int diff = resident - food;
-            for (int i = 1; i <= NbResident.Length || diff != 0; i++)
-            {
-                Random.Range(1, 3)
-                {
-                    Destroy(gameObject);
-                    diff--; 
-                }
-            }
-        }*/
-        else
-        {
-            KillRandom();
-        }
-
         if (food <= resident)
         { 
             KillRandom();
