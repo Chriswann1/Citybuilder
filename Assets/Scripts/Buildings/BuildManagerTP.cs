@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buildings : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManager##//
+public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManager##//
 {
     public GameObject building1, building2;
     public GameObject farm, school, museum, library, house;

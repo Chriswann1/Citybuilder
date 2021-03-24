@@ -82,6 +82,20 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            Time.timeScale = 0;
+        }else if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            Time.timeScale = 1;
+        }else if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            Time.timeScale = 2;
+        }else if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            Time.timeScale = 3;
+        }*/
 
         if (selectedresident != null && selectedresident.actualbehaviour == Resident.behaviour.sleep)
         {
