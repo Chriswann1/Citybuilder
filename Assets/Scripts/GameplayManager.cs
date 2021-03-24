@@ -75,13 +75,20 @@ public class GameplayManager : MonoBehaviour
         JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>(), false);
         if (!(Camera.main is null)) ui_linerenderer.SetPosition(0, Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
         
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
+        if (Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            for (int i = 0; i < PoolManager.Instance.residents_active.Count; i++)
+            {
+                JobConvert(PoolManager.Instance.residents_active[i].GetComponent<Resident>(), 100, false, 15, PoolManager.Instance.residents_active[i].AddComponent<Miner>(), false);
+            }
+        }
+        */
         /*
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
@@ -147,11 +154,14 @@ public class GameplayManager : MonoBehaviour
 
         }
     }*/
-    void KillRandom()
+    public void KillRandom()
     {
-        
-        target = Random.Range(0, PoolManager.residents_active.Count);
-        deadMan = PoolManager.residents_active [target];
+        if (PoolManager.Instance.residents_active.Count > 0)
+        {
+            target = Random.Range(0, PoolManager.Instance.residents_active.Count);
+            PoolManager.Instance.kill_resident(PoolManager.Instance.residents_active[target]);
+        }
+
         
     }
 

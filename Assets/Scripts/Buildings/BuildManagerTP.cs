@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManager##//
+public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManager##//
 {
     public GameObject building1, building2;
     public GameObject farm, school, museum, library, house;
@@ -12,6 +12,7 @@ public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManage
     public Vector3 spawnCoordinates;
     float radius = 5;
     [SerializeField] LayerMask buildingLayer;
+    private GameObject spawnedbuilding;
 
     private void Start()
     {
@@ -63,7 +64,7 @@ public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManage
             else
             {
                 objectInHand = building2;
-                objectInHand = Instantiate(building2);
+                objectInHand = Instantiate(farm);
                 inHand = true;
             }
         }
@@ -81,7 +82,7 @@ public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManage
                 Debug.Log(objectInHand.transform.position);
                 
                 spawnCoordinates = objectInHand.transform.position;
-                spawnCoordinates.y = 0;
+
             }
         }
         #endregion
@@ -97,7 +98,7 @@ public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManage
             {
                 if (tag == "farm")
                 {
-                    Instantiate(farm, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(farm, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y, spawnCoordinates.z), transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -105,7 +106,7 @@ public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManage
 
                 if (tag == "school")
                 {
-                    Instantiate(school, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(school, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -113,7 +114,7 @@ public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManage
 
                 if (tag == "museum")
                 {
-                    Instantiate(museum, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(museum, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -121,7 +122,7 @@ public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManage
 
                 if (tag == "library")
                 {
-                    Instantiate(library, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(library, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -129,7 +130,7 @@ public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManage
 
                 if (tag == "house")
                 {
-                    Instantiate(house, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(house, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -139,17 +140,22 @@ public class BuildManager : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManage
                 //test
                 if (tag == "test1")
                 {
-                    Instantiate(building1, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(building1, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
                 }
                 if (tag == "test2")
                 {
-                    Instantiate(building2, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(building2, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
+                }
+
+                if (spawnedbuilding.GetComponent<Building>() != null)
+                {
+                    spawnedbuilding.GetComponent<Building>().enabled = true;
                 }
             }
         }

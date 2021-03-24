@@ -28,10 +28,11 @@
           <e p="Buildings" t="Include">
             <e p="Building.cs" t="Include" />
             <e p="BuildList.cs" t="Include" />
-            <e p="Buildmanager.cs" t="Include" />
+            <e p="BuildManagerTP.cs" t="Include" />
             <e p="Library.cs" t="Include" />
             <e p="Museum.cs" t="Include" />
           </e>
+          <e p="CameraMovement.cs" t="Include" />
           <e p="GameplayManager.cs" t="Include" />
           <e p="MenuManager.cs" t="Include" />
           <e p="PoolManager.cs" t="Include" />
