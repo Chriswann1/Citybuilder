@@ -32,7 +32,7 @@ public class GameplayManager : MonoBehaviour
     private int target;
     private GameObject deadMan;
     [SerializeField] private bool paused;
-    [SerializeField] private int day;
+    [SerializeField] public int day;
     
     
 
