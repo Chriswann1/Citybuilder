@@ -35,8 +35,9 @@ public class GameplayManager : MonoBehaviour
     private GameObject deadMan;
     [SerializeField] private bool paused;
     [SerializeField] private int day;
-    
-    
+    [SerializeField] private int hour;
+
+
 
     public List<GameObject> houses = new List<GameObject>();
     public List<GameObject> schools = new List<GameObject>();
@@ -49,7 +50,7 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> bush = new List<GameObject>();
 
 
-    public int time;
+    public float time;
     public int prosperity;
 
     private RaycastHit Cursorray;
@@ -79,10 +80,27 @@ public class GameplayManager : MonoBehaviour
 
     }
 
+    void Start() 
+    {
+        time = 8f;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        /*
+        time += Time.deltaTime;
+        if (time >= 10)
+        {
+            hour++;
+            time = 0;
+        }
+        if (hour >= 24)
+        {
+            day++;
+            hour = 0;
+        }
+
+        
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
             Time.timeScale = 0;
@@ -95,7 +113,9 @@ public class GameplayManager : MonoBehaviour
         }else if (Input.GetKeyDown(KeyCode.Keypad3))
         {
             Time.timeScale = 3;
-        }*/
+        }
+
+
 
         if (selectedresident != null && selectedresident.actualbehaviour == Resident.behaviour.sleep)
         {
@@ -336,13 +356,13 @@ public class GameplayManager : MonoBehaviour
    {
         Time.timeScale = 1.0f;
    }
-    void TimeX2()
-    {
+   void TimeX2()
+   {
         Time.timeScale = 2.0f;
-    }
-    void TimeX3()
-    {
+   }
+   void TimeX3()
+   {
         Time.timeScale = 3.0f;
-    }
+   }
 
 }
