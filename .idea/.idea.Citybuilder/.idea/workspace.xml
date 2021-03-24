@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e6e9212-89c0-421f-be48-b1b2c7c09cbc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildings.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildmanager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildmanager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildmanager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildmanager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Bastien.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Bastien.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameplayManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameplayManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PoolManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PoolManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,9 +40,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildmanager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildList.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildManagerTP.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Hobo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PoolManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameplayManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pF5oj8HX7xNURojO4XmFC0uUEh" />
@@ -113,7 +110,8 @@
       <workItem from="1616417570939" duration="995000" />
       <workItem from="1616420674683" duration="5292000" />
       <workItem from="1616427507704" duration="1079000" />
-      <workItem from="1616574342672" duration="400000" />
+      <workItem from="1616574342672" duration="7739000" />
+      <workItem from="1616587686220" duration="7979000" />
     </task>
     <servers />
   </component>
@@ -132,6 +130,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

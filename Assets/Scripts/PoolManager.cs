@@ -6,34 +6,61 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    [SerializeField] private Transform deadinstance;
-    [SerializeField] private Transform activeinstance;
+    public static PoolManager Instance;
     
-    static public List<GameObject> residents_active = new List<GameObject>();
-    static public List<GameObject> residents_unactive = new List<GameObject>();
+    [SerializeField]private Transform deadinstance;
+    [SerializeField]private Transform activeinstance;
+    [SerializeField] private Transform spawn;
+    
+    [SerializeField] private GameObject basicresident;
+    private GameObject newresident;
+    
+    public List<GameObject> residents_active = new List<GameObject>();
+    public List<GameObject> residents_unactive = new List<GameObject>();
     
 
     // Start is called before the first frame update
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        for (int i = 0; i < deadinstance.childCount; i++)
+        {
+            residents_unactive.Add(deadinstance.GetChild(i).gameObject);
+        }
         residents_active.AddRange((GameObject.FindGameObjectsWithTag("resident")).ToList());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Keypad9))
+        {
+            spawn_resident();
+        }else if (Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            GameplayManager.Instance.KillRandom();
+        }
         
     }
 
-    void kill_resident(Resident who)
+    public void kill_resident(GameObject who)
     {
-        GameObject thisresidentobject = who.gameObject;
-        residents_active.Remove(thisresidentobject);
-        thisresidentobject.SetActive(false);
-        thisresidentobject.transform.position = deadinstance.position;
-        thisresidentobject.transform.parent = deadinstance;
+        Debug.Log("Test");
+        Resident thisresident = who.GetComponent<Resident>();
+        residents_active.Remove(who);
+        who.SetActive(false);
+        who.transform.position = deadinstance.position;
+        who.transform.parent = deadinstance;
 
-        if (who is Student || who.gameObject.GetComponent<Student>() != null)
+        if (thisresident is Student || who.GetComponent<Student>() != null)
         {
             Student student = who.gameObject.GetComponent<Student>();
             Destroy(student.classtarget);
@@ -41,28 +68,34 @@ public class PoolManager : MonoBehaviour
         }
         else
         {
-            Destroy(who);
+            Destroy(thisresident);
         }
 
-        thisresidentobject.AddComponent<Hobo>();
-        residents_unactive.Add(thisresidentobject);
+        who.AddComponent<Hobo>();
+        residents_unactive.Add(who);
 
 
 
     }
 
-    void spawn_resident()
+    public void spawn_resident()
     {
         if (residents_unactive.Count > 0)
         {
             GameObject spawningresident = residents_unactive[0];
             residents_unactive.Remove(spawningresident);
-            spawningresident.transform.position = activeinstance.position;
+            spawningresident.transform.position = spawn.position;
             spawningresident.transform.parent = activeinstance;
             residents_active.Add(spawningresident);
             spawningresident.SetActive(true);
-
-
+            
+            
+        }
+        else
+        {
+            newresident = Instantiate(basicresident, deadinstance.position, Quaternion.identity);
+            residents_unactive.Add(newresident);
+            spawn_resident();
         }
 
     }

@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -35,9 +33,8 @@ public class GameplayManager : MonoBehaviour
     private GameObject deadMan;
     [SerializeField] private bool paused;
     [SerializeField] private int day;
-    [SerializeField] private int hour;
-
-
+    
+    
 
     public List<GameObject> houses = new List<GameObject>();
     public List<GameObject> schools = new List<GameObject>();
@@ -50,7 +47,7 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> bush = new List<GameObject>();
 
 
-    public float time;
+    public int time;
     public int prosperity;
 
     private RaycastHit Cursorray;
@@ -76,31 +73,21 @@ public class GameplayManager : MonoBehaviour
         JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>(), false);
         if (!(Camera.main is null)) ui_linerenderer.SetPosition(0, Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
         
-
-
-    }
-
-    void Start() 
-    {
-        time = 8f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= 10)
+        /*
+        if (Input.GetKeyDown(KeyCode.Keypad7))
         {
-            hour++;
-            time = 0;
+            for (int i = 0; i < PoolManager.Instance.residents_active.Count; i++)
+            {
+                JobConvert(PoolManager.Instance.residents_active[i].GetComponent<Resident>(), 100, false, 15, PoolManager.Instance.residents_active[i].AddComponent<Miner>(), false);
+            }
         }
-        if (hour >= 24)
-        {
-            day++;
-            hour = 0;
-        }
-
-        
+        */
+        /*
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
             Time.timeScale = 0;
@@ -113,9 +100,7 @@ public class GameplayManager : MonoBehaviour
         }else if (Input.GetKeyDown(KeyCode.Keypad3))
         {
             Time.timeScale = 3;
-        }
-
-
+        }*/
 
         if (selectedresident != null && selectedresident.actualbehaviour == Resident.behaviour.sleep)
         {
@@ -167,11 +152,14 @@ public class GameplayManager : MonoBehaviour
 
         }
     }*/
-    void KillRandom()
+    public void KillRandom()
     {
-        
-        target = Random.Range(0, PoolManager.residents_active.Count);
-        deadMan = PoolManager.residents_active [target];
+        if (PoolManager.Instance.residents_active.Count > 0)
+        {
+            target = Random.Range(0, PoolManager.Instance.residents_active.Count);
+            PoolManager.Instance.kill_resident(PoolManager.Instance.residents_active[target]);
+        }
+
         
     }
 
@@ -348,21 +336,22 @@ public class GameplayManager : MonoBehaviour
         
     }
     
-   void Timepaused()
-   {
+    
+    void Timepaused()
+    {
         Time.timeScale = 0.0f;
-   }
-   void TimeX1()
-   {
+    }
+    void TimeX1()
+    {
         Time.timeScale = 1.0f;
-   }
-   void TimeX2()
-   {
+    }
+    void TimeX2()
+    {
         Time.timeScale = 2.0f;
-   }
-   void TimeX3()
-   {
+    }
+    void TimeX3()
+    {
         Time.timeScale = 3.0f;
-   }
-
+    }
+    
 }
