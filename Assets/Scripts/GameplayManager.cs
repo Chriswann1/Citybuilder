@@ -75,7 +75,7 @@ public class GameplayManager : MonoBehaviour
         JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>(), false);
         if (!(Camera.main is null)) ui_linerenderer.SetPosition(0, Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
         
-        //StartCoroutine("Time");
+
 
     }
 
@@ -314,27 +314,21 @@ public class GameplayManager : MonoBehaviour
         
     }
     
-    /*IEnumerator Time()
+   void Timepaused()
+   {
+        Time.timeScale = 0.0f;
+   }
+   void TimeX1()
+   {
+        Time.timeScale = 1.0f;
+   }
+    void TimeX2()
     {
-        while (!paused)
-        {
-            time = time++;
-            new WaitForSeconds(5f);
-
-            if (time == 24)
-            {
-                time = 0;
-                day++;
-            }
-
-            if (time == 25)
-            {
-                Debug.Log("25Hin1day");
-
-            }
-        }
-        return;
-    }*/
-
+        Time.timeScale = 2.0f;
+    }
+    void TimeX3()
+    {
+        Time.timeScale = 3.0f;
+    }
 
 }
