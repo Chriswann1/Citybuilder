@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -338,14 +336,15 @@ public class GameplayManager : MonoBehaviour
         
     }
     
-   void Timepaused()
-   {
+    
+    void Timepaused()
+    {
         Time.timeScale = 0.0f;
-   }
-   void TimeX1()
-   {
+    }
+    void TimeX1()
+    {
         Time.timeScale = 1.0f;
-   }
+    }
     void TimeX2()
     {
         Time.timeScale = 2.0f;
@@ -354,5 +353,5 @@ public class GameplayManager : MonoBehaviour
     {
         Time.timeScale = 3.0f;
     }
-
+    
 }
