@@ -8,6 +8,9 @@ public class UiManager : MonoBehaviour
 {
     public TextMeshProUGUI foodText, woodText, stoneText, workersText, housesText, hourText, dayText;
     public Slider prosperityBar;
+    public Button pauseButton, x1Button, x2Button, x3Button;
+
+    //public BuildManagerTP buildManager;
 
     void Update()
     {
@@ -23,24 +26,40 @@ public class UiManager : MonoBehaviour
         prosperityBar.value = GameplayManager.Instance.prosperity;
     }
 
-    public void OnClick_Farm()
+    public void OnClick_Pause()
     {
+        pauseButton.interactable = false;
+        x1Button.interactable = true;
+        x2Button.interactable = true;
+        x3Button.interactable = true;
 
+        GameplayManager.Instance.Invoke("Timepaused", 0);
     }
-    public void OnClick_House()
+    public void OnClick_X1()
     {
+        pauseButton.interactable = true;
+        x1Button.interactable = false;
+        x2Button.interactable = true;
+        x3Button.interactable = true;
 
+        GameplayManager.Instance.Invoke("TimeX1", 0);
     }
-    public void OnClick_Library()
+    public void OnClick_X2()
     {
+        pauseButton.interactable = true;
+        x1Button.interactable = true;
+        x2Button.interactable = false;
+        x3Button.interactable = true;
 
+        GameplayManager.Instance.Invoke("TimeX2", 0);
     }
-    public void OnClick_Museum()
+    public void OnClick_X3()
     {
+        pauseButton.interactable = true;
+        x1Button.interactable = true;
+        x2Button.interactable = true;
+        x3Button.interactable = false;
 
-    }
-    public void OnClick_School()
-    {
-
+        GameplayManager.Instance.Invoke("TimeX3", 0);
     }
 }

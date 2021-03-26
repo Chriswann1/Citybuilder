@@ -337,19 +337,19 @@ public class GameplayManager : MonoBehaviour
     }
     
     
-    void Timepaused()
+    public void Timepaused()
     {
         Time.timeScale = 0.0f;
     }
-    void TimeX1()
+    public void TimeX1()
     {
         Time.timeScale = 1.0f;
     }
-    void TimeX2()
+    public void TimeX2()
     {
         Time.timeScale = 2.0f;
     }
-    void TimeX3()
+    public void TimeX3()
     {
         Time.timeScale = 3.0f;
     }
