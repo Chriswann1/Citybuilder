@@ -32,9 +32,11 @@ public class GameplayManager : MonoBehaviour
     private int target;
     private GameObject deadMan;
     [SerializeField] private bool paused;
-    [SerializeField] public int day;
-    
-    
+    public int day;
+    public int hour;
+    private bool spawnPassed;
+
+
 
     public List<GameObject> houses = new List<GameObject>();
     public List<GameObject> schools = new List<GameObject>();
@@ -78,6 +80,16 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hour == 8 &&  spawnPassed == false)
+        {
+            PoolManager.Instance.spawn_resident();
+            spawnPassed = true;
+        }
+
+        if (hour == 9)
+        {
+            spawnPassed = false;
+        }
         /*
         if (Input.GetKeyDown(KeyCode.Keypad7))
         {
@@ -139,10 +151,10 @@ public class GameplayManager : MonoBehaviour
 
 
 
-        //GiveFood();
+        GiveFood();
 
     }
-    /*
+    
     void GiveFood()
     {
         if (food <= resident)
@@ -151,7 +163,7 @@ public class GameplayManager : MonoBehaviour
             GiveFood();
 
         }
-    }*/
+    }
     public void KillRandom()
     {
         if (PoolManager.Instance.residents_active.Count > 0)
@@ -352,6 +364,8 @@ public class GameplayManager : MonoBehaviour
     void TimeX3()
     {
         Time.timeScale = 3.0f;
-    }
-    
+   }
+
+
+
 }

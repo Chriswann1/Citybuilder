@@ -66,30 +66,40 @@ public class Resident : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        /*
-                if (GameplayManger.Instance.food >= GameplayManger.Instance.resident)
+        if (actualbehaviour != behaviour.waiting)
+        {
+            Happiness = true;
+        }
         
-                GameplayManger.Instance.resident = GameplayManger.Instance.resident + 1;
+        if (GameplayManager.Instance.food >= GameplayManager.Instance.resident)
+        {
+        
+                GameplayManager.Instance.resident++;
                 energy = 100;
         
-            }*/
-        /*
-        if (GameplayManger.Instance.time == 19 && agePassed == false)
+        }
+        
+        if (GameplayManager.Instance.hour == 19 && agePassed == false)
         {
             energy = 10;
             Age();
             agePassed = true;
         }
-        if (GameplayManger.Instance.time == 20 && Happiness == false && sleepOut == false)
+        if (GameplayManager.Instance.hour == 20 && Happiness == false && sleepOut == false)
         {
-            GameplayManger.Instance.prosperity = GameplayManger.Instance.prosperity - 1;
+            GameplayManager.Instance.prosperity--;
             sleepOut = true;
         }
-        if (GameplayManger.Instance.time == 2)
+         if (GameplayManager.Instance.hour == 20 && Happiness == true && sleepOut == false)
+        {
+            GameplayManager.Instance.prosperity++;
+            sleepOut = true;
+        }
+        if (GameplayManager.Instance.hour == 2 && (agePassed == true || sleepOut == true)
         {
             agePassed = false;
             sleepOut = false;
-        }*/
+        }
 
         energy = Mathf.Clamp(energy, 0, 100);
 
