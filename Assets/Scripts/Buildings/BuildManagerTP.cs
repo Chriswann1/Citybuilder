@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildManager##//
 {
@@ -14,16 +15,85 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
     [SerializeField] LayerMask buildingLayer;
     private GameObject spawnedbuilding;
 
-    private void Start()
-    {
-        
-    }
+    public Button farmButton, houseButton, libraryButton, museumButton, schoolButton;
 
     void Update()
     {
-        #region Spawn building in hand
+        farmButton.interactable = false;
+        houseButton.interactable = false;
+        libraryButton.interactable = false;
+        museumButton.interactable = false;
+        schoolButton.interactable = false;
+
+        if (Input.GetKeyDown("0"))
+        {
+            if (inHand)
+            {
+                Destroy(objectInHand);
+                objectInHand = null;
+                inHand = false;
+                
+            }
+        }
+
+        #region Call the spawn of building in hand
 
         //Put a building in hand. If it's already in hand, take it off
+
+        //farm
+        if (GameplayManager.Instance.wood >= 15 && GameplayManager.Instance.stone >= 10)
+        {
+            farmButton.interactable = true;
+            if (Input.GetKeyDown("1"))
+            {
+                Invoke("SpawnFarm", 0.0f);
+            }
+        }
+
+        //house
+        if (GameplayManager.Instance.wood >= 8 && GameplayManager.Instance.stone >= 4)
+        {
+            houseButton.interactable = true;
+            if (Input.GetKeyDown("2"))
+            {
+                Invoke("SpawnHouse", 0.0f);
+            }
+        }
+        
+        //library
+        if (GameplayManager.Instance.wood >= 25 && GameplayManager.Instance.stone >= 10)
+        {
+            libraryButton.interactable = true;
+            if (Input.GetKeyDown("3"))
+            {
+                Invoke("SpawnLibrary", 0.0f);
+            }
+        }
+        
+        //museum
+        if (GameplayManager.Instance.wood >= 30 && GameplayManager.Instance.stone >= 35)
+        {
+            museumButton.interactable = true;
+            if (Input.GetKeyDown("4"))
+            {
+                Invoke("SpawnMuseum", 0.0f);
+            }
+        }
+        
+        //school
+        if (GameplayManager.Instance.wood >= 10 && GameplayManager.Instance.stone >= 15)
+        {
+            schoolButton.interactable = true;
+            if (Input.GetKeyDown("5"))
+            {
+                Invoke("SpawnSchool", 0.0f);
+            }
+        }
+        
+
+
+        //tests
+        /*
         if (Input.GetKeyDown("a"))
         {
             if (inHand)
@@ -68,6 +138,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                 inHand = true;
             }
         }
+        */
         #endregion
 
         #region Building in hand follow mouse
@@ -98,6 +169,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
             {
                 if (tag == "farm")
                 {
+                    CheckRessources(15, 10);
                     spawnedbuilding = Instantiate(farm, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y, spawnCoordinates.z), transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
@@ -106,6 +178,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
 
                 if (tag == "school")
                 {
+                    CheckRessources(10, 15);
                     spawnedbuilding = Instantiate(school, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
@@ -114,6 +187,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
 
                 if (tag == "museum")
                 {
+                    CheckRessources(30, 35);
                     spawnedbuilding = Instantiate(museum, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
@@ -122,6 +196,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
 
                 if (tag == "library")
                 {
+                    CheckRessources(25, 10);
                     spawnedbuilding = Instantiate(library, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
@@ -130,6 +205,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
 
                 if (tag == "house")
                 {
+                    CheckRessources(8, 4);
                     spawnedbuilding = Instantiate(house, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
@@ -160,6 +236,129 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
             }
         }
         #endregion
+    }
+
+    #region Spawn building in hand
+    public void SpawnFarm()
+    {
+        if (inHand)
+        {
+            string tag = objectInHand.tag;
+            Destroy(objectInHand);
+            objectInHand = null;
+            inHand = false;
+            if (tag != "farm")
+            {
+                objectInHand = farm;
+                objectInHand = Instantiate(farm);
+                inHand = true;
+            }
+        }
+        else
+        {
+            objectInHand = farm;
+            objectInHand = Instantiate(farm);
+            inHand = true;
+        }
+    }
+
+    public void SpawnHouse()
+    {
+        if (inHand)
+        {
+            string tag = objectInHand.tag;
+            Destroy(objectInHand);
+            objectInHand = null;
+            inHand = false;
+            if (tag != "house")
+            {
+                objectInHand = house;
+                objectInHand = Instantiate(house);
+                inHand = true;
+            }
+        }
+        else
+        {
+            objectInHand = house;
+            objectInHand = Instantiate(house);
+            inHand = true;
+        }
+    }
+
+    public void SpawnLibrary()
+    {
+        if (inHand)
+        {
+            string tag = objectInHand.tag;
+            Destroy(objectInHand);
+            objectInHand = null;
+            inHand = false;
+            if (tag != "library")
+            {
+                objectInHand = library;
+                objectInHand = Instantiate(library);
+                inHand = true;
+            }
+        }
+        else
+        {
+            objectInHand = library;
+            objectInHand = Instantiate(library);
+            inHand = true;
+        }
+    }
+
+    public void SpawnMuseum()
+    {
+        if (inHand)
+        {
+            string tag = objectInHand.tag;
+            Destroy(objectInHand);
+            objectInHand = null;
+            inHand = false;
+            if (tag != "museum")
+            {
+                objectInHand = museum;
+                objectInHand = Instantiate(museum);
+                inHand = true;
+            }
+        }
+        else
+        {
+            objectInHand = museum;
+            objectInHand = Instantiate(museum);
+            inHand = true;
+        }
+    }
+
+    public void SpawnSchool()
+    {
+        if (inHand)
+        {
+            string tag = objectInHand.tag;
+            Destroy(objectInHand);
+            objectInHand = null;
+            inHand = false;
+            if (tag != "school")
+            {
+                objectInHand = school;
+                objectInHand = Instantiate(school);
+                inHand = true;
+            }
+        }
+        else
+        {
+            objectInHand = school;
+            objectInHand = Instantiate(school);
+            inHand = true;
+        }
+    }
+    #endregion
+
+    public void CheckRessources(int woodRequired, int stoneRequired)
+    {
+        GameplayManager.Instance.wood -= woodRequired;
+        GameplayManager.Instance.stone -= stoneRequired;
     }
 
     private void OnDrawGizmos()
