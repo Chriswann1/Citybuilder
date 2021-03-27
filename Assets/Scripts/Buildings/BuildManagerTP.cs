@@ -188,6 +188,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                 if (tag == "museum")
                 {
                     CheckRessources(30, 35);
+                    GameplayManager.Instance.prosperity += 18;
                     spawnedbuilding = Instantiate(museum, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
@@ -197,6 +198,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                 if (tag == "library")
                 {
                     CheckRessources(25, 10);
+                    GameplayManager.Instance.prosperity += 8;
                     spawnedbuilding = Instantiate(library, spawnCoordinates, transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
