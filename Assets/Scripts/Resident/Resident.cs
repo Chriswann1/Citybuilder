@@ -10,7 +10,7 @@ public class Resident : MonoBehaviour
     private protected Transform buildingentrance;
     public float energy = 100;
     public int age = 20;
-    public bool Happiness = true;
+    public bool Happiness = false;
     private protected GameObject target;
     private protected GameObject lastworkplace;
     private protected NavMeshAgent agent;
@@ -66,22 +66,14 @@ public class Resident : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (actualbehaviour != behaviour.waiting)
+        if (actualbehaviour != behaviour.waiting && this.GetComponent<Hobo>() == null)
         {
             Happiness = true;
         }
-        
-        if (GameplayManager.Instance.food >= GameplayManager.Instance.resident)
-        {
-        
-            GameplayManager.Instance.resident++;
-            energy = 100;
-        
-        }
-        
+
         if (GameplayManager.Instance.hour == 19 && agePassed == false)
         {
-            energy = 10;
+            if (this.GetComponent<Hobo>() == null) energy = 10;
             Age();
             agePassed = true;
         }
@@ -326,7 +318,7 @@ public class Resident : MonoBehaviour
         iscouroutinerunning = true;
         waitingpoint = transform.position;
 
-        if (!(this is Hobo) && energy <= 10)
+        if (this.GetComponent<Hobo>() == null && energy <= 10)
         {
             Happiness = false;
         }

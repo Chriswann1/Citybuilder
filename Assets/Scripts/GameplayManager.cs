@@ -11,7 +11,6 @@ public class GameplayManager : MonoBehaviour
     public int food;
     public int wood;
     public int stone;
-    public int resident;
     public int freeHouse;
     
     public Transform sleepinstance;
@@ -349,6 +348,7 @@ public class GameplayManager : MonoBehaviour
                 break;
             case "house":
                 houses.Add(building.gameObject);
+                freeHouse++;
                 break;
             case "farm":
                 farms.Add(building.gameObject);

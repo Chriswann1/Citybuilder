@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3864877451635121616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7592728, y: 0.54591554, z: 19.688015}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 15, y: 9, z: 10}
   m_Children:
   - {fileID: 199980062}
@@ -139,7 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: museum
-  cost: 
   percentbuilded: 0
 --- !u!208 &-31772015995603489
 NavMeshObstacle:
