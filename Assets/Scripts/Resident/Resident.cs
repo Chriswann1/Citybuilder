@@ -353,7 +353,7 @@ public class Resident : MonoBehaviour
         {
             if (Random.Range(1, 10) >= 10)
             {
-                Destroy(gameObject);
+                PoolManager.Instance.kill_resident(this.gameObject);
             }
             else
             {
@@ -365,7 +365,7 @@ public class Resident : MonoBehaviour
         {
             if (Random.Range(1, 10) >= 7)
             {
-                Destroy(gameObject);
+                PoolManager.Instance.kill_resident(this.gameObject);
             }
             else
             {
@@ -378,8 +378,8 @@ public class Resident : MonoBehaviour
         {
             if (Random.Range(1, 10) >= 4)
             {
-                Destroy(gameObject);
-               
+                PoolManager.Instance.kill_resident(this.gameObject);
+
             }
             else
             {
@@ -391,16 +391,16 @@ public class Resident : MonoBehaviour
         {
             if (Random.Range(1, 10) >= 2)
             {
-                Destroy(gameObject);
+                PoolManager.Instance.kill_resident(this.gameObject);
             }
             else
             {
                 age++;
             }
         }
-        else if (age <= 70)
+        else if (age >= 70)
         {
-            Destroy(gameObject);
+            PoolManager.Instance.kill_resident(this.gameObject);
         }
         else
 

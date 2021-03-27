@@ -46,7 +46,7 @@ public class PoolManager : MonoBehaviour
             spawn_resident();
         }else if (Input.GetKeyDown(KeyCode.Keypad8))
         {
-            GameplayManager.Instance.KillRandom();
+            //GameplayManager.Instance.KillRandom();
         }
         
     }

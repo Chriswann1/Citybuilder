@@ -177,27 +177,28 @@ public class GameplayManager : MonoBehaviour
         {
             if (food < PoolManager.Instance.residents_active.Count)
             {
-                Debug.Log("kill");
+                Debug.LogError("kill");
                 KillRandom();
             }
 
-            else
-            {
+            
+            
                 food--;
-            }
+           
         }
     }
     public void KillRandom()
     {
         if (PoolManager.Instance.residents_active.Count > 0)
         {
+            Debug.LogError("KillRandom");
             target = Random.Range(0, PoolManager.Instance.residents_active.Count);
             PoolManager.Instance.kill_resident(PoolManager.Instance.residents_active[target]);
         }
 
         
     }
-
+    
 
     public void JobConvert(Resident who, float energy, bool ishappy, int age, Resident targetedjob, bool isconvertfinished)
     {
