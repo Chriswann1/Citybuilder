@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -74,8 +74,8 @@ public class Resident : MonoBehaviour
         if (GameplayManager.Instance.food >= GameplayManager.Instance.resident)
         {
         
-                GameplayManager.Instance.resident++;
-                energy = 100;
+            GameplayManager.Instance.resident++;
+            energy = 100;
         
         }
         
@@ -95,7 +95,7 @@ public class Resident : MonoBehaviour
             GameplayManager.Instance.prosperity++;
             sleepOut = true;
         }
-        if (GameplayManager.Instance.hour == 2 && (agePassed == true || sleepOut == true)
+        if (GameplayManager.Instance.hour == 2 && (agePassed == true || sleepOut))
         {
             agePassed = false;
             sleepOut = false;
@@ -409,6 +409,6 @@ public class Resident : MonoBehaviour
         }
     }
 
-
-    
 }
+
+

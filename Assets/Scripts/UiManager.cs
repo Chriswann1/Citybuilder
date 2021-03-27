@@ -19,7 +19,7 @@ public class UiManager : MonoBehaviour
         stoneText.text = "Stone : " + GameplayManager.Instance.stone;
         //workersText.text =
         //housesText.text =
-        hourText.text = "Time : " + GameplayManager.Instance.time;
+        hourText.text = "Hour : " + GameplayManager.Instance.hour;
         dayText.text = "Day : " + GameplayManager.Instance.day;
 
 
