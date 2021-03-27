@@ -90,12 +90,12 @@ public class Resident : MonoBehaviour
             GameplayManager.Instance.prosperity--;
             sleepOut = true;
         }
-         if (GameplayManager.Instance.hour == 20 && Happiness == true && sleepOut == false)
+        if (GameplayManager.Instance.hour == 20 && Happiness == true && sleepOut == false)
         {
             GameplayManager.Instance.prosperity++;
             sleepOut = true;
         }
-        if (GameplayManager.Instance.hour == 2 && (agePassed == true || sleepOut == true)
+        if (GameplayManager.Instance.hour == 2 && (agePassed == true || sleepOut == true))
         {
             agePassed = false;
             sleepOut = false;
