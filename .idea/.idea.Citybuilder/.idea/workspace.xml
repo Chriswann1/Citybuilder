@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e6e9212-89c0-421f-be48-b1b2c7c09cbc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Citybuilder/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Terrain/ErwannTerrain.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Terrain/ErwannTerrain.asset" afterDir="false" />
-    </list>
+    <list default="true" id="7e6e9212-89c0-421f-be48-b1b2c7c09cbc" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,6 +111,7 @@
       <workItem from="1616587686220" duration="9207000" />
       <workItem from="1616597607629" duration="1012000" />
       <workItem from="1616849734006" duration="588000" />
+      <workItem from="1616853129045" duration="742000" />
     </task>
     <servers />
   </component>
