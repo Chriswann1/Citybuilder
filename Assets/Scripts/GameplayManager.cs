@@ -11,7 +11,7 @@ public class GameplayManager : MonoBehaviour
     public int food;
     public int wood;
     public int stone;
-    public int resident = 0;
+    public int resident;
     public int freeHouse;
     
     public Transform sleepinstance;
@@ -48,8 +48,8 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> forest = new List<GameObject>();
     public List<GameObject> bush = new List<GameObject>();
 
-
-    public int time;
+    private bool Eat;
+    public float time;
     public int prosperity;
 
     private RaycastHit Cursorray;
@@ -80,6 +80,17 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time = time + Time.deltaTime;
+        if (time >= 10)
+        {
+            time = 0;
+            hour++;
+        }
+        if (hour >= 24)
+        {
+            hour = 0;
+            day++;
+        }
         if (hour == 8 &&  spawnPassed == false)
         {
             PoolManager.Instance.spawn_resident();
@@ -89,6 +100,7 @@ public class GameplayManager : MonoBehaviour
         if (hour == 9)
         {
             spawnPassed = false;
+            Eat = true;
         }
         /*
         if (Input.GetKeyDown(KeyCode.Keypad7))
@@ -119,7 +131,11 @@ public class GameplayManager : MonoBehaviour
             selectedresident = null;
             upgradeui.SetActive(false);
         }
-        //if (time == 19) GiveFood();
+        if (hour == 19 && Eat == false)
+        {
+            GiveFood();
+            Eat = true;
+        }
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out Cursorray, 200, cursorray_mask))
@@ -151,17 +167,24 @@ public class GameplayManager : MonoBehaviour
 
 
 
-        GiveFood();
+
 
     }
     
     void GiveFood()
     {
-        if (food <= resident)
-        { 
-            KillRandom();
-            GiveFood();
+        for (int i = 0; i < PoolManager.Instance.residents_active.Count; i++)
+        {
+            if (food < PoolManager.Instance.residents_active.Count)
+            {
+                Debug.Log("kill");
+                KillRandom();
+            }
 
+            else
+            {
+                food--;
+            }
         }
     }
     public void KillRandom()
@@ -364,8 +387,8 @@ public class GameplayManager : MonoBehaviour
     public void TimeX3()
     {
         Time.timeScale = 3.0f;
-   }
+    }
 
-
+    
 
 }
