@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1859df354e06f7543b8049c9897af165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minrange: 2
+  minrange: 4
   energy: 100
   age: 23
   Happiness: 0

@@ -195,8 +195,6 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                     spawnedbuilding = Instantiate(museum, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y+_terrain.SampleHeight(spawnCoordinates)*2, spawnCoordinates.z), transform.rotation, objectContainer.transform);
 
                     GameplayManager.Instance.prosperity += 18;
-                    spawnedbuilding = Instantiate(museum, spawnCoordinates, transform.rotation, objectContainer.transform);
-
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -209,8 +207,6 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                     spawnedbuilding = Instantiate(library, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y+_terrain.SampleHeight(spawnCoordinates)*2, spawnCoordinates.z), transform.rotation, objectContainer.transform);
 
                     GameplayManager.Instance.prosperity += 8;
-                    spawnedbuilding = Instantiate(library, spawnCoordinates, transform.rotation, objectContainer.transform);
-
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;

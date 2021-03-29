@@ -78,6 +78,8 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        prosperity = Mathf.Clamp(prosperity, 0, 100);
+
         if (Input.GetKeyDown("8"))
         {
             prosperity += 90;
