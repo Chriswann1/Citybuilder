@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e6e9212-89c0-421f-be48-b1b2c7c09cbc" name="Default Changelist" comment="" />
+    <list default="true" id="7e6e9212-89c0-421f-be48-b1b2c7c09cbc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/House.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/House.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Ui/Ui game.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Ui/Ui game.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildManagerTP.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildManagerTP.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,18 +35,18 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Miner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/Library.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildmanage.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Builder.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/Buildmanager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameplayManger.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildList.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildManagerTP.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Job/Hobo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PoolManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameplayManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Resident/Resident.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildManagerTP.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pF5oj8HX7xNURojO4XmFC0uUEh" />
@@ -111,7 +115,7 @@
       <workItem from="1616587686220" duration="9207000" />
       <workItem from="1616597607629" duration="1012000" />
       <workItem from="1616849734006" duration="588000" />
-      <workItem from="1616853129045" duration="742000" />
+      <workItem from="1616853129045" duration="7338000" />
     </task>
     <servers />
   </component>

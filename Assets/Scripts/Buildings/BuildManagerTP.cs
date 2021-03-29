@@ -11,6 +11,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
     public GameObject objectInHand = null;
     public bool inHand = false;
     public Vector3 spawnCoordinates;
+    [SerializeField] private Terrain _terrain;
     float radius = 5;
     [SerializeField] LayerMask buildingLayer;
     private GameObject spawnedbuilding;
@@ -153,6 +154,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                 Debug.Log(objectInHand.transform.position);
                 
                 spawnCoordinates = objectInHand.transform.position;
+                
 
             }
         }
@@ -167,10 +169,11 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
             Debug.Log(hitColliders[0].name);
             if (hitColliders.Length == 1) //If there's no building in the radius (except the one in your hand)
             {
+                Debug.Log(_terrain.SampleHeight(spawnCoordinates));
                 if (tag == "farm")
                 {
                     CheckRessources(15, 10);
-                    spawnedbuilding = Instantiate(farm, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y, spawnCoordinates.z), transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(farm, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y+_terrain.SampleHeight(spawnCoordinates)*2, spawnCoordinates.z), transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -179,7 +182,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                 if (tag == "school")
                 {
                     CheckRessources(10, 15);
-                    spawnedbuilding = Instantiate(school, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(school, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y+_terrain.SampleHeight(spawnCoordinates)*2, spawnCoordinates.z), transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -188,8 +191,12 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                 if (tag == "museum")
                 {
                     CheckRessources(30, 35);
+
+                    spawnedbuilding = Instantiate(museum, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y+_terrain.SampleHeight(spawnCoordinates)*2, spawnCoordinates.z), transform.rotation, objectContainer.transform);
+
                     GameplayManager.Instance.prosperity += 18;
                     spawnedbuilding = Instantiate(museum, spawnCoordinates, transform.rotation, objectContainer.transform);
+
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -198,8 +205,12 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                 if (tag == "library")
                 {
                     CheckRessources(25, 10);
+
+                    spawnedbuilding = Instantiate(library, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y+_terrain.SampleHeight(spawnCoordinates)*2, spawnCoordinates.z), transform.rotation, objectContainer.transform);
+
                     GameplayManager.Instance.prosperity += 8;
                     spawnedbuilding = Instantiate(library, spawnCoordinates, transform.rotation, objectContainer.transform);
+
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -208,7 +219,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                 if (tag == "house")
                 {
                     CheckRessources(8, 4);
-                    spawnedbuilding = Instantiate(house, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(house, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y+_terrain.SampleHeight(spawnCoordinates)*2, spawnCoordinates.z), transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -218,14 +229,14 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                 //test
                 if (tag == "test1")
                 {
-                    spawnedbuilding = Instantiate(building1, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(building1, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y, spawnCoordinates.z), transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
                 }
                 if (tag == "test2")
                 {
-                    spawnedbuilding = Instantiate(building2, spawnCoordinates, transform.rotation, objectContainer.transform);
+                    spawnedbuilding = Instantiate(building2, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y, spawnCoordinates.z), transform.rotation, objectContainer.transform);
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;

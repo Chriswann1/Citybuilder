@@ -5,7 +5,6 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public string name;
-    public int[] cost;
     public float percentbuilded;
     private bool builded;
     
