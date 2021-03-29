@@ -24,14 +24,13 @@ public class GameplayManager : MonoBehaviour
 
 
     [SerializeField] private GameObject upgradeui;
-    private LineRenderer ui_linerenderer;
     [SerializeField] private Button[] upgradeui_button;
     private Resident selectedresident;
     
     private int target;
     private GameObject deadMan;
     [SerializeField] private bool paused;
-    public int day;
+    public int day = 0;
     public int hour;
     private bool spawnPassed;
 
@@ -55,7 +54,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private LayerMask cursorray_mask;
 
     public GameObject victoryScreen, defeatScreen;
-   
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -68,25 +67,32 @@ public class GameplayManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (upgradeui != null && upgradeui.GetComponent<LineRenderer>() != null) ui_linerenderer = upgradeui.GetComponent<LineRenderer>();
 
         initTracker();
         freeHouse = houses.Count;
         JobConvert(testminer, testminer.energy, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>(), false);
         JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>(), false);
-        if (!(Camera.main is null)) ui_linerenderer.SetPosition(0, Camera.main.ScreenToWorldPoint(upgradeui.transform.position) - Vector3.down * 2f);
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (prosperity == 100)
+        if (Input.GetKeyDown("8"))
+        {
+            prosperity += 90;
+        }
+        if (Input.GetKeyDown("7"))
+        {
+            Time.timeScale = 10.0f;
+        }
+
+        if (prosperity >= 100)
         {
             Timepaused();
             victoryScreen.SetActive(true);
         }
-        if (resident == 0)
+        if (PoolManager.Instance.residents_active.Count == 0)
         {
             Timepaused();
             defeatScreen.SetActive(true);
@@ -112,7 +118,7 @@ public class GameplayManager : MonoBehaviour
         if (hour == 9)
         {
             spawnPassed = false;
-            Eat = true;
+            Eat = false;
         }
         /*
         if (Input.GetKeyDown(KeyCode.Keypad7))
@@ -145,8 +151,9 @@ public class GameplayManager : MonoBehaviour
         }
         if (hour == 19 && Eat == false)
         {
-            GiveFood();
             Eat = true;
+            
+            GiveFood();
         }
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -160,10 +167,6 @@ public class GameplayManager : MonoBehaviour
             }
         }
 
-        if (selectedresident != null)
-        {
-            ui_linerenderer.SetPosition(1, new Vector3(selectedresident.transform.position.x, Camera.main.ScreenToWorldPoint(upgradeui.transform.position).y-2f, selectedresident.transform.position.z));
-        }
 
 
         /*
@@ -182,35 +185,34 @@ public class GameplayManager : MonoBehaviour
 
 
     }
-    
+
     void GiveFood()
     {
-        for (int i = 0; i < PoolManager.Instance.residents_active.Count; i++)
+        //Debug.Log("Give food");
+
+        List<GameObject>togivefood = new List<GameObject>(PoolManager.Instance.residents_active);
+        while (togivefood.Count > 0)
         {
-            if (food < PoolManager.Instance.residents_active.Count)
+            Debug.Log("Food : " + food); 
+            if (food > 0)
             {
-                Debug.LogError("kill");
-                KillRandom();
-            }
-
-            
-            
+                Debug.Log("Given food");
+                int target = Random.Range(0, togivefood.Count - 1);
                 food--;
-           
+                togivefood.Remove(togivefood[target]);
+            }
+            else
+            {
+                Debug.Log(togivefood.Count);
+                for (int i = 0; i < togivefood.Count; i++)
+                {
+                    Debug.Log("Kill " + i);
+                    PoolManager.Instance.kill_resident(togivefood[i]);
+                }
+                break;
+            }
         }
     }
-    public void KillRandom()
-    {
-        if (PoolManager.Instance.residents_active.Count > 0)
-        {
-            Debug.LogError("KillRandom");
-            target = Random.Range(0, PoolManager.Instance.residents_active.Count);
-            PoolManager.Instance.kill_resident(PoolManager.Instance.residents_active[target]);
-        }
-
-        
-    }
-    
 
     public void JobConvert(Resident who, float energy, bool ishappy, int age, Resident targetedjob, bool isconvertfinished)
     {

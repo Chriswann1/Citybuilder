@@ -17,6 +17,7 @@ public class PoolManager : MonoBehaviour
     
     public List<GameObject> residents_active = new List<GameObject>();
     public List<GameObject> residents_unactive = new List<GameObject>();
+    public int residents;
     
 
     // Start is called before the first frame update
@@ -48,7 +49,7 @@ public class PoolManager : MonoBehaviour
         {
             //GameplayManager.Instance.KillRandom();
         }
-        
+        residents = residents_active.Count;
     }
 
     public void kill_resident(GameObject who)
