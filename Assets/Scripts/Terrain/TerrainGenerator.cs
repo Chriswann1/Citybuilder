@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if (UNITY_EDITOR)
+using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
 using UnityEngine;
@@ -93,3 +94,4 @@ public class TerrainGenerator : MonoBehaviour
         terrainData.SetAlphamaps(0,0,alphadata);
     }
 }
+#endif

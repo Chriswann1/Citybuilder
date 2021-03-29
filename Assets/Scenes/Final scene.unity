@@ -3188,7 +3188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfff48867cab41a4e965ba55cea75243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: -1
+  food: 0
   wood: 0
   stone: 0
   freeHouse: 0
@@ -3367,10 +3367,10 @@ MonoBehaviour:
   depth: 1
   width: 128
   lenght: 128
-  scale: 10
+  scale: 3
   offset: {x: 2.17, y: 0}
   _terrain: {fileID: 240175402}
-  HeightRandomizerMax: 2
+  HeightRandomizerMax: 0.5
 --- !u!1 &1289598063
 GameObject:
   m_ObjectHideFlags: 0
