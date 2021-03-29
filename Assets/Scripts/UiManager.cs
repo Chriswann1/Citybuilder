@@ -17,8 +17,8 @@ public class UiManager : MonoBehaviour
         foodText.text = "Food : " + GameplayManager.Instance.food;
         woodText.text = "Wood : " + GameplayManager.Instance.wood;
         stoneText.text = "Stone : " + GameplayManager.Instance.stone;
-        //workersText.text =
-        //housesText.text =
+        workersText.text = "Residents : " + GameplayManager.Instance.resident;
+        housesText.text = "Free houses : " + GameplayManager.Instance.freeHouse;
         hourText.text = "Hour : " + GameplayManager.Instance.hour;
         dayText.text = "Day : " + GameplayManager.Instance.day;
 

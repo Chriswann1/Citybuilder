@@ -36,4 +36,9 @@ public class MenuManager : MonoBehaviour
         Debug.Log("has quit game");
         Application.Quit();
     }
+
+    public void OnClick_Menu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

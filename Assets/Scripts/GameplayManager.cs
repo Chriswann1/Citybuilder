@@ -55,6 +55,8 @@ public class GameplayManager : MonoBehaviour
     private RaycastHit Cursorray;
     [SerializeField] private LayerMask cursorray_mask;
 
+    public GameObject victoryScreen, defeatScreen;
+   
     // Start is called before the first frame update
     void Awake()
     {
@@ -80,6 +82,17 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (prosperity == 100)
+        {
+            Timepaused();
+            victoryScreen.SetActive(true);
+        }
+        if (resident == 0)
+        {
+            Timepaused();
+            defeatScreen.SetActive(true);
+        }
+
         time = time + Time.deltaTime;
         if (time >= 10)
         {
