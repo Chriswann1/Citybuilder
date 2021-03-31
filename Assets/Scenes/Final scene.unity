@@ -3867,7 +3867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   zoomspeed: 360
-  sensibility: 0.02
+  sensibility: 0.015
 --- !u!81 &1419658072
 AudioListener:
   m_ObjectHideFlags: 0
