@@ -9,7 +9,8 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private float zoomspeed;
-    
+    [SerializeField] private float sensibility = 0.1f;
+
     private Vector2Int screenbounds;
     
     // Start is called before the first frame update
@@ -22,31 +23,37 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        _camera.fieldOfView = Mathf.Clamp(_camera.fieldOfView, 4f, 100f);
-        
-        //Debug.Log("Position cursor " + Input.mousePosition);
-        if (Input.mousePosition.x < 40 && transform.position.x > -60)
+        if (!UiManager.Instance.inQuitMenu)
         {
-            transform.Translate(Vector3.left * speed * 0.1f);
-        }else if (Input.mousePosition.x > screenbounds.x-40 && transform.position.x < 60)
-        {
-            transform.Translate(-Vector3.left * speed * 0.1f);
-        }
+            _camera.fieldOfView = Mathf.Clamp(_camera.fieldOfView, 4f, 100f);
 
-        if (Input.mousePosition.y < 40 && transform.position.z > -60)
-        {
-            transform.Translate(-Vector3.up * speed * 0.1f);
-        }else if (Input.mousePosition.y > screenbounds.y-40 && transform.position.z < 60)
-        {
-            transform.Translate(Vector3.up * speed * 0.1f);
-        }
+            //Debug.Log("Position cursor " + Input.mousePosition);
+            if (Input.mousePosition.x < 40 && transform.position.x > -60)
+            {
+                transform.Translate(Vector3.left * speed * sensibility);
+            }
+            else if (Input.mousePosition.x > screenbounds.x - 40 && transform.position.x < 60)
+            {
+                transform.Translate(-Vector3.left * speed * sensibility);
+            }
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && _camera.fieldOfView > 4f)
-        {
-            _camera.fieldOfView -= zoomspeed * 0.1f;
-        }else if (Input.GetAxis("Mouse ScrollWheel") < 0 && _camera.fieldOfView < 100f)
-        {
-            _camera.fieldOfView += zoomspeed * 0.1f;
+            if (Input.mousePosition.y < 40 && transform.position.z > -60)
+            {
+                transform.Translate(-Vector3.up * speed * sensibility);
+            }
+            else if (Input.mousePosition.y > screenbounds.y - 40 && transform.position.z < 60)
+            {
+                transform.Translate(Vector3.up * speed * sensibility);
+            }
+
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && _camera.fieldOfView > 4f)
+            {
+                _camera.fieldOfView -= zoomspeed * sensibility;
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && _camera.fieldOfView < 100f)
+            {
+                _camera.fieldOfView += zoomspeed * sensibility;
+            }
         }
     }
 }

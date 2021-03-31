@@ -6,11 +6,27 @@ using TMPro;
 
 public class UiManager : MonoBehaviour
 {
+    public static UiManager Instance;
+
     public TextMeshProUGUI foodText, woodText, stoneText, workersText, housesText, hourText, dayText;
     public Slider prosperityBar;
     public Button pauseButton, x1Button, x2Button, x3Button;
+    public GameObject quitMenu;
+    public bool inQuitMenu = false;
 
     //public BuildManagerTP buildManager;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Update()
     {
@@ -24,6 +40,27 @@ public class UiManager : MonoBehaviour
 
 
         prosperityBar.value = GameplayManager.Instance.prosperity;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (inQuitMenu)
+            {
+                OnClick_Resume();
+            }
+            else
+            {
+                GameplayManager.Instance.Invoke("Timepaused", 0);
+                quitMenu.SetActive(true);
+                inQuitMenu = true;
+            }
+        }
+    }
+
+    public void OnClick_Resume()
+    {
+        quitMenu.SetActive(false);
+        GameplayManager.Instance.Invoke("TimeX1", 0);
+        inQuitMenu = false;
     }
 
     public void OnClick_Pause()
