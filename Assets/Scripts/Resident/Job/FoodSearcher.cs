@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-public class Food Searcher : Resident
+public class FoodSearcher : Resident
 {
     // Start is called before the first frame update
     protected override void Start()//Set the tag for the building where the workers, work + changing the color

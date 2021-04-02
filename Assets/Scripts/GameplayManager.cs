@@ -70,9 +70,10 @@ public class GameplayManager : MonoBehaviour
 
         initTracker();
         freeHouse = houses.Count;
+        /*
         JobConvert(testminer, testminer.energy, testminer.Happiness, testminer.age,  testminer.gameObject.AddComponent<Miner>(), false);
         JobConvert(testtimber, testtimber.energy, testtimber.Happiness, testtimber.age,  testtimber.gameObject.AddComponent<Timber>(), false);
-        
+        */
     }
 
     // Update is called once per frame
