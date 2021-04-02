@@ -6,7 +6,7 @@ public class Building : MonoBehaviour
 {
     public string name;
     public float percentbuilded = 0;
-    private bool builded;
+    private bool builded = false;
     
     // Start is called before the first frame update
     void Start() //set the building bool + adding it to the Gameplaymanager queue (to let the builder build it)
