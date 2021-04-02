@@ -47,7 +47,7 @@ public class Resident : MonoBehaviour
 
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Start() //saving collider and navmeshagent 
     {
 
         thiscollider = this.GetComponent<Collider>();

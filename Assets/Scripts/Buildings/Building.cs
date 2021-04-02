@@ -5,7 +5,7 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public string name;
-    public float percentbuilded;
+    public float percentbuilded = 0;
     private bool builded;
     
     // Start is called before the first frame update
