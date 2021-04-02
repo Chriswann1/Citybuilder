@@ -3147,9 +3147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfff48867cab41a4e965ba55cea75243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: 0
-  wood: 0
-  stone: 0
+  food: 10
+  wood: 10
+  stone: 10
   freeHouse: 0
   sleepinstance: {fileID: 1716322348}
   currentbuildingtobuild: {fileID: 0}
@@ -4209,12 +4209,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3308eda4831d42e4b85c115dc71947d0, type: 3}
+--- !u!1 &1600740605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7805220697643779010, guid: 3308eda4831d42e4b85c115dc71947d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1498005314}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1600740606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7805220697643779016, guid: 3308eda4831d42e4b85c115dc71947d0,
     type: 3}
   m_PrefabInstance: {fileID: 1498005314}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1600740611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600740605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bbf00d23bea364a9c94bf722cfec6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minrange: 2
+  energy: 100
+  age: 20
+  Happiness: 0
+  taskpercent: 0
+  actualbehaviour: 0
 --- !u!1001 &1602663202
 PrefabInstance:
   m_ObjectHideFlags: 0
