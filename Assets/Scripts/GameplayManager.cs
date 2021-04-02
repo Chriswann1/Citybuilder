@@ -56,7 +56,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject victoryScreen, defeatScreen;
 
     // Start is called before the first frame update
-    void Awake()
+    void Awake()//set the singletone + inittracker fucntion + setting freehouse counter
     {
         if (Instance == null)
         {
@@ -77,7 +77,7 @@ public class GameplayManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()//clamp prosperity + check cheatcodes inputs + win condition + gameover condition + check time event + check for cursor click on resident
     {
         prosperity = Mathf.Clamp(prosperity, 0, 100);
 
@@ -189,7 +189,7 @@ public class GameplayManager : MonoBehaviour
 
     }
 
-    void GiveFood()
+    void GiveFood()//give food randomly and kill if there is not enought food
     {
         //Debug.Log("Give food");
 
@@ -217,7 +217,7 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    public void JobConvert(Resident who, float energy, bool ishappy, int age, Resident targetedjob, bool isconvertfinished)
+    public void JobConvert(Resident who, float energy, bool ishappy, int age, Resident targetedjob, bool isconvertfinished)//Convert resident job with 3 convert type, || 1: if this is not a student but a resident with other jobs || 2: if it's a student that just finished is conversion || 3: if it's a student that did'nt finished is job and mainly, don't have a job targeted
     {
         GameObject whoobject = who.gameObject;
         if (!(who is Student) && !whoobject.GetComponent<Student>())
@@ -262,7 +262,7 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    public void SpawnUpgradeUI(Resident who)
+    public void SpawnUpgradeUI(Resident who)//spawn upgrade ui and set the correct button
     {
         for (int i = 0; i < 4; i++)
         {
@@ -318,7 +318,7 @@ public class GameplayManager : MonoBehaviour
         
     }
 
-    public void ConvertButton(Button presssbutton)
+    public void ConvertButton(Button presssbutton)//check which button was pressed
     {
         if (presssbutton == upgradeui_button[0])
         {
@@ -337,7 +337,7 @@ public class GameplayManager : MonoBehaviour
         
     }
 
-    private void initTracker()
+    private void initTracker()//adding every buildings and ressources to list (in scene)
     {
         
         
@@ -356,7 +356,7 @@ public class GameplayManager : MonoBehaviour
         
     }
     
-    public void ActivateBuilding(Building building)
+    public void ActivateBuilding(Building building)//can activate buildings and add them to the correct list
     {
         currentbuildingtobuild = null;
         switch (building.name)
@@ -385,25 +385,25 @@ public class GameplayManager : MonoBehaviour
        
     }
 
-    public void DestroyBuilding(GameObject building)
+    public void DestroyBuilding(GameObject building)//[INDEV]//
     {
         
     }
     
     
-    public void Timepaused()
+    public void Timepaused()//Pause time
     {
         Time.timeScale = 0.0f;
     }
-    public void TimeX1()
+    public void TimeX1()//set time to 1
     {
         Time.timeScale = 1.0f;
     }
-    public void TimeX2()
+    public void TimeX2()//set time to 2
     {
         Time.timeScale = 2.0f;
     }
-    public void TimeX3()
+    public void TimeX3()//set time to 3
     {
         Time.timeScale = 3.0f;
     }

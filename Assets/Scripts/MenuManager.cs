@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject panelcrédit;
     // Start is called before the first frame update
-    void Start()
+    void Start()//reset timescale to 1
     {
         Time.timeScale = 1.0f;
     }
@@ -18,26 +18,26 @@ public class MenuManager : MonoBehaviour
     {
 
     }
-    public void OnClick_Start()
+    public void OnClick_Start()//load level
     {
         SceneManager.LoadScene(1);
     }
-    public void OnClick_Crédits()
+    public void OnClick_Crédits()//activate credits
     {
         panelcrédit.SetActive(true);
     }
-    public void Return_Menu()
+    public void Return_Menu()//desactivate credit
     {
         panelcrédit.SetActive(false);
     }
-    public void Doquit()
+    public void Doquit()//quit the game
 
     {
         Debug.Log("has quit game");
         Application.Quit();
     }
 
-    public void OnClick_Menu()
+    public void OnClick_Menu()//Load menu
     {
         SceneManager.LoadScene(0);
     }

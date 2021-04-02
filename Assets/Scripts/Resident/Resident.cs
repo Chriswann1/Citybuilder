@@ -47,7 +47,7 @@ public class Resident : MonoBehaviour
 
 
     // Start is called before the first frame update
-    protected virtual void Start() //saving collider and navmeshagent 
+    protected virtual void Start() //saving collider and navmeshagent + set	behaviour 
     {
 
         thiscollider = this.GetComponent<Collider>();
@@ -64,7 +64,7 @@ public class Resident : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected virtual void Update()//set behaviour depending on food + energy, set happiness, checking time + switch for behaviour
     {
         if (actualbehaviour != behaviour.waiting && this.GetComponent<Hobo>() == null)
         {
@@ -248,7 +248,7 @@ public class Resident : MonoBehaviour
     }
     
 
-    protected GameObject FindClosestWorkPlace(string workplacetag)
+    protected GameObject FindClosestWorkPlace(string workplacetag)//return the closest building with the tag of the place 
     {
 
         GameObject[] workplace;
@@ -311,7 +311,7 @@ public class Resident : MonoBehaviour
 
     }
 
-    protected IEnumerator WaitingMove()
+    protected IEnumerator WaitingMove()//set a waiting point and moving around it
     {
             
 
@@ -334,7 +334,7 @@ public class Resident : MonoBehaviour
         yield return null;
     }
 
-    void Age()
+    void Age()//Check current age and kill if the random is in range, the age influence the killing chance
     {
         if (age < 50)
         {
