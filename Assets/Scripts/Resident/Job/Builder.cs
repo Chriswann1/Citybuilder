@@ -4,7 +4,7 @@ using UnityEngine;
 public class Builder : Resident
 {
     // Start is called before the first frame update
-    protected override void Start()
+    protected override void Start()//Set the tag for the building where the workers, work + changing the color
     {
         buildingtag[0] = "tobuild";
         taskspeed = 5f;
@@ -14,7 +14,7 @@ public class Builder : Resident
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void Update()//using resident script + adding the work behaviour
     {
         base.Update();
         if (actualbehaviour == behaviour.work)
@@ -23,7 +23,7 @@ public class Builder : Resident
             {
                 actualbehaviour = behaviour.waiting;
                 Debug.Log("Test");
-                
+               
             }
             else
             {

@@ -18,7 +18,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
 
     public Button farmButton, houseButton, libraryButton, museumButton, schoolButton;
 
-    void Update()
+    void Update() //setting every button + checking input & button for spawning buildings, we also take terrain information for the height because of the gameobject center, it also check the tag to create the correct building
     {
         farmButton.interactable = false;
         houseButton.interactable = false;
@@ -193,8 +193,6 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                     CheckRessources(30, 35);
 
                     spawnedbuilding = Instantiate(museum, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y+_terrain.SampleHeight(spawnCoordinates)*2, spawnCoordinates.z), transform.rotation, objectContainer.transform);
-
-                    GameplayManager.Instance.prosperity += 18;
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -205,8 +203,6 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
                     CheckRessources(25, 10);
 
                     spawnedbuilding = Instantiate(library, new Vector3(spawnCoordinates.x,-objectInHand.transform.GetChild(0).transform.position.y+_terrain.SampleHeight(spawnCoordinates)*2, spawnCoordinates.z), transform.rotation, objectContainer.transform);
-
-                    GameplayManager.Instance.prosperity += 8;
                     Destroy(objectInHand);
                     objectInHand = null;
                     inHand = false;
@@ -248,7 +244,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
     }
 
     #region Spawn building in hand
-    public void SpawnFarm()
+    public void SpawnFarm()//spawn the farm gameobject
     {
         if (inHand)
         {
@@ -271,7 +267,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
         }
     }
 
-    public void SpawnHouse()
+    public void SpawnHouse()//spawn the house gameobject
     {
         if (inHand)
         {
@@ -294,7 +290,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
         }
     }
 
-    public void SpawnLibrary()
+    public void SpawnLibrary()//spawn the library gameobject
     {
         if (inHand)
         {
@@ -317,7 +313,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
         }
     }
 
-    public void SpawnMuseum()
+    public void SpawnMuseum()//spawn the museum gameobject
     {
         if (inHand)
         {
@@ -340,7 +336,7 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
         }
     }
 
-    public void SpawnSchool()
+    public void SpawnSchool()//spawn the school gameobject
     {
         if (inHand)
         {
@@ -364,13 +360,13 @@ public class BuildManagerTP : MonoBehaviour  //##HAVE TO BE RENAMED TO BuildMana
     }
     #endregion
 
-    public void CheckRessources(int woodRequired, int stoneRequired)
+    public void CheckRessources(int woodRequired, int stoneRequired) //Removing the ressources when buying a new building
     {
         GameplayManager.Instance.wood -= woodRequired;
         GameplayManager.Instance.stone -= stoneRequired;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmos() //draw the sphere in unity for debugging purpose
     {
         Gizmos.DrawSphere(spawnCoordinates, radius);
     }

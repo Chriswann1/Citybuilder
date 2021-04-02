@@ -4,7 +4,7 @@ using UnityEngine;
 public class Hobo : Resident
 {
     // Start is called before the first frame update
-    protected override void Start()
+    protected override void Start()//changing color + initial behaviour
     {
         base.Start(); 
         this.GetComponent<MeshRenderer>().material.color = Color.white;

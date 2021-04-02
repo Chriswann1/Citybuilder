@@ -28,7 +28,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    void Update()
+    void Update()//setting the text in UITEXT + check for the ingame menu with echap
     {
         foodText.text = "Food : " + GameplayManager.Instance.food;
         woodText.text = "Wood : " + GameplayManager.Instance.wood;
@@ -56,14 +56,14 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void OnClick_Resume()
+    public void OnClick_Resume()//disabling the ingame menu and resetting the time
     {
         quitMenu.SetActive(false);
         GameplayManager.Instance.Invoke("TimeX1", 0);
         inQuitMenu = false;
     }
 
-    public void OnClick_Pause()
+    public void OnClick_Pause()//disbaling pause button and enabling the others buttons
     {
         pauseButton.interactable = false;
         x1Button.interactable = true;
@@ -72,7 +72,7 @@ public class UiManager : MonoBehaviour
 
         GameplayManager.Instance.Invoke("Timepaused", 0);
     }
-    public void OnClick_X1()
+    public void OnClick_X1()//disabling x1 button and enabling the others buttons
     {
         pauseButton.interactable = true;
         x1Button.interactable = false;
@@ -81,7 +81,7 @@ public class UiManager : MonoBehaviour
 
         GameplayManager.Instance.Invoke("TimeX1", 0);
     }
-    public void OnClick_X2()
+    public void OnClick_X2()//disabling x2 button and enabling the others buttons
     {
         pauseButton.interactable = true;
         x1Button.interactable = true;
@@ -90,7 +90,7 @@ public class UiManager : MonoBehaviour
 
         GameplayManager.Instance.Invoke("TimeX2", 0);
     }
-    public void OnClick_X3()
+    public void OnClick_X3()//disabling x3 button and enabling the others buttons
     {
         pauseButton.interactable = true;
         x1Button.interactable = true;

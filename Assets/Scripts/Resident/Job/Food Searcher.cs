@@ -1,10 +1,10 @@
 ﻿
 using UnityEngine;
 
-public class FoodSearcher : Resident
+public class Food Searcher : Resident
 {
     // Start is called before the first frame update
-    protected override void Start()
+    protected override void Start()//Set the tag for the building where the workers, work + changing the color
     {
         taskspeed = 10f;
         buildingtag[0] = "bush";
@@ -15,7 +15,7 @@ public class FoodSearcher : Resident
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void Update()//using resident script + adding the work behaviour
     {
         base.Update();
         if (actualbehaviour == behaviour.work)

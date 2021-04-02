@@ -14,14 +14,14 @@ public class CameraMovement : MonoBehaviour
     private Vector2Int screenbounds;
     
     // Start is called before the first frame update
-    void Start()
+    void Start() //taking the main camera in the scene for the screen bounds
     {
         _camera = Camera.main;
         if (!(_camera is null)) screenbounds = new Vector2Int(_camera.pixelWidth, _camera.pixelHeight);
         
     }
 
-    void Update()
+    void Update() //checking the player cursor location, if the cursor is near the limit, the camera will move + scroolwheel changing the FOV setting in the camera
     {
         if (!UiManager.Instance.inQuitMenu)
         {

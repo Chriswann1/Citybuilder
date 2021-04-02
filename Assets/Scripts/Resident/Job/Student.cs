@@ -8,7 +8,7 @@ public class Student : Resident
     [NonSerialized] public Resident classtarget;
 
     // Start is called before the first frame update
-    protected override void Start()
+    protected override void Start()//Set the tag for the building where the workers, work + changing the color
     {
         buildingtag[0] = "school";
         base.Start();
@@ -17,7 +17,7 @@ public class Student : Resident
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void Update()//using resident script + adding the work behaviour
     {
 
         base.Update();

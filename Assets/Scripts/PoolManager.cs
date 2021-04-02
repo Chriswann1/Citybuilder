@@ -21,7 +21,7 @@ public class PoolManager : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Awake()
+    void Awake()//set the Singletone + adding the scene resident in list
     {
         if (Instance == null)
         {
@@ -40,7 +40,7 @@ public class PoolManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()//cheat codes + counting resident
     {
         if (Input.GetKey(KeyCode.Keypad9))
         {
@@ -52,8 +52,8 @@ public class PoolManager : MonoBehaviour
         residents = residents_active.Count;
     }
 
-    public void kill_resident(GameObject who)
-    {
+    public void kill_resident(GameObject who)//the function that "kill" resident, desassign them from "alive" group/list and assign them in "dead" group/list
+     {
         Debug.Log("Test");
         Resident thisresident = who.GetComponent<Resident>();
         residents_active.Remove(who);
@@ -79,7 +79,7 @@ public class PoolManager : MonoBehaviour
 
     }
 
-    public void spawn_resident()
+    public void spawn_resident()//the function that take in dead group/list and set them alive, if the dead group/list is empty, it instantiate one of them
     {
         if (residents_unactive.Count > 0)
         {
