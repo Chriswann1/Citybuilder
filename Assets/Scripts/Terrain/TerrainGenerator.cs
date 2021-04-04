@@ -27,7 +27,7 @@ public class TerrainGenerator : MonoBehaviour
     private const int DESERT = 2;
     private const int SNOW = 3;
 
-    TerrainData GenerateMap(TerrainData terrainData)
+    TerrainData GenerateMap(TerrainData terrainData) //Generate the TerrainData
     {
         terrainData.heightmapResolution = width + 1;
 
@@ -41,7 +41,7 @@ public class TerrainGenerator : MonoBehaviour
         return terrainData;
     }
 
-    float[,] GenerateHeights()
+    float[,] GenerateHeights()//Generate the height for each vertex for the terrain
     {
         float[,] lenghts = new float[width, lenght];
         for (int x = 0; x < width; x++)
@@ -55,7 +55,7 @@ public class TerrainGenerator : MonoBehaviour
         return lenghts;
     }
 
-    float CalculateHeight(int x, int y)
+    float CalculateHeight(int x, int y)//Calculate the height for the terrain with x, y, using perlinNoise
     {
 
         float xcoord = ((float)x / width * scale + offset.x);
@@ -64,12 +64,12 @@ public class TerrainGenerator : MonoBehaviour
         return Mathf.PerlinNoise(xcoord, ycoord);
     }
 
-    public void GenerateMap()
+    public void GenerateMap()//Transfer data to the actual terrain
     {
         _terrain.terrainData = GenerateMap(_terrain.terrainData);
     }
 
-    public void TextureApply(TerrainData terrainData)
+    public void TextureApply(TerrainData terrainData)//Applying texture to terrain [WIP]
     {
 
         for (int y = 0; y < terrainData.heightmapResolution; y++)

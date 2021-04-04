@@ -6,9 +6,9 @@ using UnityEngine;
 
 
 [CustomEditor(typeof(TerrainGenerator))]
-public class TerrainGenerator_Editor : Editor
+public class TerrainGenerator_Editor : Editor //Script that is changing the editor inspector
 {
-    public override void OnInspectorGUI()
+    public override void OnInspectorGUI()//adding GUI to editor, a button for the TerrainGenerator
     {
         DrawDefaultInspector();
 
